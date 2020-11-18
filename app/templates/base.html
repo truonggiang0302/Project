@@ -280,6 +280,19 @@
         flex-direction: column;
         justify-content: space-between
     }
+
+    .title h3 {
+        padding: 10px 20px;
+        border-bottom: none;
+        margin: 0;
+        font-size: 20px;
+        color: #fff;
+        background: #3dbf91;
+        display: inline-block;
+        position: relative;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
 </style>
 
 <body>
@@ -312,16 +325,17 @@
                 </div>
             </div>
             <div class="menu">
-                <nav class="navbar navbar-expand-lg p-0 justify-content-center bg-dark navbar-dark ">
+                <nav class="navbar navbar-expand-lg p-0 justify-content-center bg-dark navbar-dark sticky-top">
                     <div class="navbar-nav m-1 font-weight-bold text-light ">
                         <a class="nav-item nav-link active px-3" href="/">TRANG CHỦ</a>
                         <a class="nav-item nav-link px-3" href="#">GIỚI THIỆU</a>
                         <div class="dropdown show">
-                            <a class="nav-item nav-link px-3 dropdown-toggle " href="#" role="button" id="dropdownMenuLink"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HÃNG SẢN PHẨM</a>
+                            <a class="nav-item nav-link px-3 dropdown-toggle " href="#" role="button"
+                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">HÃNG SẢN PHẨM</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item " href="{% url 'view-product' %}">ALL</a>
-                                <a class="dropdown-item" href="#">HONDA</a>
+                                <a class="dropdown-item " href="{% url 'view-all-product' %}">ALL</a>
+                                <a class="dropdown-item" href="{% url 'view-product' %}">HONDA</a>
                                 <a class="dropdown-item" href="#">YAHAMA</a>
                                 <a class="dropdown-item" href="#">KAWASAKI</a>
                                 <a class="dropdown-item" href="#">BMW</a>
@@ -334,6 +348,7 @@
                         <a class="nav-item nav-link px-3" href="#">TIN TỨC</a>
                         <a class="nav-item nav-link px-3" href="#">LIÊN HỆ</a>
                     </div>
+                </nav>
             </div>
         </div>
         <!-- EndHeader-->

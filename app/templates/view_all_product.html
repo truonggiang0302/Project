@@ -1,0 +1,37 @@
+{% extends "./base.html" %}
+
+{% block menu %}
+    {% with page=3 %}
+        {{block.super}}
+    {% endwith %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="col-9">
+            <ul class="list-unstyled row">
+              {% for p in productList %}
+                <li class="list-item col-sm-4 mt-3">
+                  <div class='item-container'>
+                    <a href="/product-detail/{{p.id}}" class='product-item'>
+                      <img src="/{{p.image}}" class='product-image'>
+                      <div class="item-info">
+                        <div>
+                          <span class='product-name' style="font-weight: bold;">{{p.name}}</span>
+                        </div>
+                        <div>
+                          <span>Dòng :</span>
+                          <span>{{p.price}}</span>
+                        </div>
+                        <div>
+                          <span class='price-title'>Giá bán :</span>
+                          <span class='price'>{{p.price}} triệu ₫</span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+    </div>
+{% endblock %}
