@@ -303,7 +303,7 @@
             <div class="row bg-dark mr-0">
                 <div class="col-xs-12 col-sm-12 col-md-4 pt-3">
                     <div class="logo">
-                        <a href="/"><img src="static/images/logo_pkl.png" alt="logo"></a>
+                        <a href="/"><img src="/static/images/logo_pkl.png" alt="logo"></a>
                     </div>
                 </div>
                 <div>
@@ -327,26 +327,26 @@
             <div class="menu">
                 <nav class="navbar navbar-expand-lg p-0 justify-content-center bg-dark navbar-dark sticky-top">
                     <div class="navbar-nav m-1 font-weight-bold text-light ">
-                        <a class="nav-item nav-link active px-3" href="/">TRANG CHỦ</a>
-                        <a class="nav-item nav-link px-3" href="#">GIỚI THIỆU</a>
+                        <a class="nav-item nav-link px-3 {%if page == 1%} active {%endif%}" href="/">TRANG CHỦ</a>
+                        <a class="nav-item nav-link px-3 {%if page == 2%} active {%endif%} " href="#">GIỚI THIỆU</a>
                         <div class="dropdown show">
-                            <a class="nav-item nav-link px-3 dropdown-toggle " href="#" role="button"
+                            <a class="nav-item nav-link px-3 dropdown-toggle {%if page == 3%} active {%endif%} " href="#" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">HÃNG SẢN PHẨM</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item " href="{% url 'view-all-product' %}">ALL</a>
-                                <a class="dropdown-item" href="{% url 'view-product' %}">HONDA</a>
-                                <a class="dropdown-item" href="#">YAHAMA</a>
-                                <a class="dropdown-item" href="#">KAWASAKI</a>
-                                <a class="dropdown-item" href="#">BMW</a>
-                                <a class="dropdown-item" href="#">SUZUKI</a>
-                                <a class="dropdown-item" href="#">DUCATI</a>
-                                <a class="dropdown-item" href="#">KTM</a>
+                                <a class="dropdown-item " href="{% url 'all-product' %}">ALL</a>
+                                <a class="dropdown-item" href="{% url 'product' 1 %}">HONDA</a>
+                                <a class="dropdown-item" href="{% url 'product' 2 %}">YAHAMA</a>
+                                <a class="dropdown-item" href="{% url 'product' 3 %}">DUCATI</a>
+                                <a class="dropdown-item" href="{% url 'product' 4 %}">KAWASAKI</a>
+                                <a class="dropdown-item" href="{% url 'product' 5 %}">BMW</a>
+                                <a class="dropdown-item" href="{% url 'product' 6 %}">SUZUKI</a>
+                                <a class="dropdown-item" href="{% url 'product' 7 %}">KTM</a>
                                 <a class="dropdown-item" href="#">HÃNG KHÁC</a>
                             </div>
                         </div>
-                        <a class="nav-item nav-link px-3" href="#">TIN TỨC</a>
-                        <a class="nav-item nav-link px-3" href="#">LIÊN HỆ</a>
+                        <a class="nav-item nav-link px-3 {%if page == 4%} active {%endif%}" href="#">TIN TỨC</a>
+                        <a class="nav-item nav-link px-3 {%if page == 5%} active {%endif%}" href="#">LIÊN HỆ</a>
                     </div>
                 </nav>
             </div>

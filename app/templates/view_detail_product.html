@@ -1,0 +1,84 @@
+{% extends "./base.html" %}
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .product-detail-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+  }
+
+  .product-detail-image {
+    width: 100%
+  }
+  .label{
+    font-weight: bold;
+  }
+  .title{
+      padding:0;
+      border-bottom: none;
+      margin: 0;
+      font-size: 20px;
+      color: #fff;
+      background: #09573b;
+      display: inline-block;
+      position: relative;
+      font-weight: bold;
+  }
+
+</style>
+
+<div>
+
+  <div class="container mt-3 mb-6">
+    <div class="row">
+      <div class="col-5">
+        <image class='product-detail-image' src="/{{product.image}}">
+      </div>
+
+      <div class="col-7 mt-5">
+        <div class='product-detail-title'>{{product.name}}</div>
+        <br>
+        <table class="table border border-secondaryt">
+          <tr>
+            <td class="label">Giá:</td>
+            <td  style="font-weight: bold;">{{product.price|floatformat:"0"}} triệu đồng</td>
+            <td class="label">Phân khối:</td>
+            <td>{{product.cc|floatformat:"0" }} cc</td>
+          </tr>
+          <tr>
+            <td class="label">Xuất xứ:</td>
+            <td>{{product.origin}}</td>
+            <td class="label">Màu sắc:</td>
+            <td>{{product.color}}</td>
+          </tr>
+          <tr>
+            <td class="label">Đời xe:</td>
+            <td>{{product.year}}</td>
+            <td class="label">Loại xe:</td>
+            <td>{{product.type_vehicle}}</td>
+          </tr>
+        </table>
+        <br>
+        <div style="text-align: center">
+          <a class="btn btn-secondary" href="/all-product">Quay lại</a>
+          <a class="btn btn-primary" href="/order-product/{{product.id}}">Mua hàng</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <div class="title">
+        <h3>MÔ TẢ</h3>
+      </div>
+      <div class="border border-secondary mt-1 p-2">
+        <p>{{product.description}}</p>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+{% endblock %}

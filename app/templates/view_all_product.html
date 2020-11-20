@@ -1,37 +1,66 @@
 {% extends "./base.html" %}
 
 {% block menu %}
-    {% with page=3 %}
-        {{block.super}}
-    {% endwith %}
+{% with page=3 %}
+{{block.super}}
+{% endwith %}
 {% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="col-9">
-            <ul class="list-unstyled row">
-              {% for p in productList %}
-                <li class="list-item col-sm-4 mt-3">
-                  <div class='item-container'>
-                    <a href="/product-detail/{{p.id}}" class='product-item'>
-                      <img src="/{{p.image}}" class='product-image'>
-                      <div class="item-info">
-                        <div>
-                          <span class='product-name' style="font-weight: bold;">{{p.name}}</span>
-                        </div>
-                        <div>
-                          <span>Dòng :</span>
-                          <span>{{p.price}}</span>
-                        </div>
-                        <div>
-                          <span class='price-title'>Giá bán :</span>
-                          <span class='price'>{{p.price}} triệu ₫</span>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
+<style>
+  .page{
+    text-align: center;
+  }
+  .page a{
+    border: 1px solid black;
+    color: white;
+    background: gray;
+    text-decoration: none;
+    padding: 5px;
+  }
+</style>
+<div class="container">
+  <div class="col-9">
+    <ul class="list-unstyled row">
+      {% for p in productList %}
+      <li class="list-item col-sm-4 mt-4">
+        <div class='item-container'>
+          <a href="{% url 'detail-product' p.id %}" class='product-item'>
+            <img src="/{{p.image}}" class='product-image'>
+            <div class="item-info">
+              <div>
+                <span class='product-name' style="font-weight: bold;">{{p.name}}</span>
+              </div>
+              <div>
+                <span>Dòng :</span>
+                <span>{{p.type_vehicle}}</span>
+              </div>
+              <div>
+                <span class='price-title'>Giá bán :</span>
+                <span class='price' style="color: red;">{{p.price|floatformat:"0" }} triệu đồng</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <br>
+    <div class="page">
+      <a href="/all-product?page=1">1</a>
+      {% if page > 1 %}
+      <a href="/all-product?page={{page|add:-1}}">Prev</a>
+      {% else %}
+      <span>Prev</span>
+      {% endif %}
+      {% if page < num_page %}
+      <a href="/all-product?page={{page|add:1}}">Next</a>
+      {% else %}
+      <span>Next</span>
+      {% endif %}
+      <a href="/all-product?page={{num_page}}">{{num_page}}</a>
     </div>
+  </div>
+  <br>
+</div>
+<br>
 {% endblock %}
