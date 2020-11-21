@@ -334,8 +334,9 @@
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">HÃNG SẢN PHẨM</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                {% for p in product %}
                                 <a class="dropdown-item " href="{% url 'all-product' %}">ALL</a>
-                                <a class="dropdown-item" href="{% url 'product' 1 %}">HONDA</a>
+                                <a class="dropdown-item" href="{% url 'honda' %}">HONDA</a>
                                 <a class="dropdown-item" href="{% url 'product' 2 %}">YAHAMA</a>
                                 <a class="dropdown-item" href="{% url 'product' 3 %}">DUCATI</a>
                                 <a class="dropdown-item" href="{% url 'product' 4 %}">KAWASAKI</a>
@@ -343,6 +344,7 @@
                                 <a class="dropdown-item" href="{% url 'product' 6 %}">SUZUKI</a>
                                 <a class="dropdown-item" href="{% url 'product' 7 %}">KTM</a>
                                 <a class="dropdown-item" href="#">HÃNG KHÁC</a>
+                                {% endfor %}
                             </div>
                         </div>
                         <a class="nav-item nav-link px-3 {%if page == 4%} active {%endif%}" href="#">TIN TỨC</a>

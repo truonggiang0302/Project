@@ -32,3 +32,6 @@ class Order(models.Model):
     customer_name=models.CharField(max_length=50)
     customer_phone=models.CharField(max_length=20)
     customer_address=models.CharField(max_length=200)
+    order_date=models.DateTimeField()
+    deliver_date=models.DateTimeField(null=True)
+    status=models.IntegerField()
