@@ -44,18 +44,18 @@
     </ul>
     <br>
     <div class="page">
-      <a href="{% url 'honda' %}?page=1">1</a>
+      <a href="{% url 'kawasaki' %}?page=1">1</a>
       {% if page > 1 %}
-      <a href="{% url 'honda' %}?page={{page|add:-1}}">Prev</a>
+      <a href="{% url 'kawasaki' %}?page={{page|add:-1}}">Prev</a>
       {% else %}
       <span>Prev</span>
       {% endif %}
       {% if page < num_page %}
-      <a href="{% url 'honda' %}?page={{page|add:1}}">Next</a>
+      <a href="{% url 'kawasaki' %}?page={{page|add:1}}">Next</a>
       {% else %}
       <span>Next</span>
       {% endif %}
-      <a href="{% url 'honda' %}?page={{num_page}}">{{num_page}}</a>
+      <a href="{% url 'kawasaki' %}?page={{num_page}}">{{num_page}}</a>
     </div>
   </div>
 </div>

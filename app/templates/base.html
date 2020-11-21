@@ -317,7 +317,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 ">
                     <div class="search">
                         <form class="form-inline md-form form-sm float-right">
-                            <input class="form-control form-control-sm ml-3 w-35 p-3 " type="text"
+                            <input class="form-control form-control-sm ml-3 w-35 p-3 " type="text" name="name" value="{{name}}"
                                 placeholder="Nhập từ khóa tìm kiếm" aria-label="Search">
                             <button class="fas fa-search" style="height:36px" type="submit"></button>
                         </form>
@@ -334,17 +334,15 @@
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">HÃNG SẢN PHẨM</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                {% for p in product %}
                                 <a class="dropdown-item " href="{% url 'all-product' %}">ALL</a>
                                 <a class="dropdown-item" href="{% url 'honda' %}">HONDA</a>
-                                <a class="dropdown-item" href="{% url 'product' 2 %}">YAHAMA</a>
-                                <a class="dropdown-item" href="{% url 'product' 3 %}">DUCATI</a>
-                                <a class="dropdown-item" href="{% url 'product' 4 %}">KAWASAKI</a>
-                                <a class="dropdown-item" href="{% url 'product' 5 %}">BMW</a>
-                                <a class="dropdown-item" href="{% url 'product' 6 %}">SUZUKI</a>
-                                <a class="dropdown-item" href="{% url 'product' 7 %}">KTM</a>
+                                <a class="dropdown-item" href="{% url 'yamaha' %}">YAHAMA</a>
+                                <a class="dropdown-item" href="{% url 'ducati' %}">DUCATI</a>
+                                <a class="dropdown-item" href="{% url 'kawasaki' %}">KAWASAKI</a>
+                                <a class="dropdown-item" href="{% url 'bmw' %}">BMW</a>
+                                <a class="dropdown-item" href="{% url 'suzuki' %}">SUZUKI</a>
+                                <a class="dropdown-item" href="{% url 'ktm' %}">KTM</a>
                                 <a class="dropdown-item" href="#">HÃNG KHÁC</a>
-                                {% endfor %}
                             </div>
                         </div>
                         <a class="nav-item nav-link px-3 {%if page == 4%} active {%endif%}" href="#">TIN TỨC</a>

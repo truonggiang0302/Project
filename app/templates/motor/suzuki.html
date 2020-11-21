@@ -1,4 +1,4 @@
-{% extends "./base.html" %}
+{% extends "../base.html" %}
 
 {% block menu %}
 {% endblock %}
@@ -19,7 +19,7 @@
 <div class="container">
   <div class="col-9">
     <ul class="list-unstyled row">
-      {% for p in productList %}
+      {% for p in product %}
       <li class="list-item col-sm-4 mt-3">
         <div class='item-container'>
           <a href="{% url 'detail-product' p.id %}" class='product-item'>
@@ -43,22 +43,20 @@
       {% endfor %}
     </ul>
     <br>
-    {% for p in productList %}
     <div class="page">
-      <a href="{% url 'product' p.id %} ?page=1">1</a>
+      <a href="{% url 'suzuki' %}?page=1">1</a>
       {% if page > 1 %}
-      <a href="{% url 'product' p.id %} ?page={{page|add:-1}}">Prev</a>
+      <a href="{% url 'suzuki' %}?page={{page|add:-1}}">Prev</a>
       {% else %}
       <span>Prev</span>
       {% endif %}
       {% if page < num_page %}
-      <a href="{% url 'product' p.id %} ?page={{page|add:1}}">Next</a>
+      <a href="{% url 'suzuki' %}?page={{page|add:1}}">Next</a>
       {% else %}
       <span>Next</span>
       {% endif %}
-      <a href="{% url 'product' p.id %} ?page={{num_page}}">{{num_page}}</a>
+      <a href="{% url 'suzuki' %}?page={{num_page}}">{{num_page}}</a>
     </div>
-    {% endfor %}
   </div>
 </div>
 {% endblock %}

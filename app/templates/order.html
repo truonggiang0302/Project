@@ -9,13 +9,13 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <div class="container mt-3">
-    <h3>Đặt mua hàng trực tuyến</h3>
+    <h3 style="text-transform: uppercase;font-weight: bold;color: blue;text-align: center;">Đặt mua hàng trực tuyến</h3>
     <form method="POST">{%csrf_token%}
         <table class="table">
             <tbody>
                 <tr>
                     <td colspan="2">
-                        <h4>Thông tin sản phẩm</h4>
+                        <h4 style="text-transform: uppercase;font-weight: bold;">Thông tin xe</h4>
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <h4>Thông tin người mua hàng</h4>
+                        <h4 style="text-transform: uppercase;font-weight: bold;">Thông tin người mua</h4>
                     </td>
                 </tr>
                 <tr>
@@ -59,6 +59,7 @@
         </table>
         <button class="btn btn-primary" type="submit">Đặt mua</button>
     </form>
+<!--    <a href="{% url 'detail-product' product.id %}"><button class="btn btn-secondary" type="submit" >Quay lại</button></a>-->
 
     
 

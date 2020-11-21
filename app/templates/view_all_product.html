@@ -1,24 +1,67 @@
 {% extends "./base.html" %}
 
 {% block menu %}
-{% with page=3 %}
-{{block.super}}
-{% endwith %}
+  {% with page=3 %}
+    {{block.super}}
+  {% endwith %}
 {% endblock %}
 {% block content %}
 <style>
-  .page{
+  .page {
     text-align: center;
   }
-  .page a{
+
+  .page a {
     border: 1px solid black;
     color: white;
     background: gray;
     text-decoration: none;
     padding: 5px;
   }
+
+  .form-control {
+    height: 35px;
+    border-radius: 0px;
+  }
+
+  .label {
+    font-weight: bold;
+  }
 </style>
+
 <div class="container">
+  <div class="pt-3">
+    <form>
+      <table>
+        <tr>
+          <td><label class="label">Hãng :</label></td>
+          <td><select name='categoryId' class="form-control">
+              <option value="">--Chọn hãng sản xuất--</option>
+              {% for c in categoryList %}
+              <option {%if c.id == categoryId%}selected{%endif%} value="{{c.id}}">{{c.name}}</option>
+              {% endfor %}
+            </select></td>
+          <td><label class="label">Phân khối :</label></td>
+          <td><select name='ccId' class="form-control">
+              {% for cc in ccList %}
+              <option value="">--Chọn phân khối--</option>
+              <option {%if cc.id == ccId%}selected{%endif%} value="{{cc.id}}">{{cc.name}}</option>
+              {% endfor %}
+            </select></td>
+          <td><label class="label">Giá :</label></td>
+          <td><select name='priceId' class="form-control">
+              <option value="">--Chọn mức giá--</option>
+              {% for pr in priceList %}
+              <option {%if pr.id == priceId%}selected{%endif%} value="{{pr.id}}">{{pr.name}}</option>
+              {% endfor %}
+            </select></td>
+          <td><button class="btn btn-primary" type="submit">
+              Tìm kiếm
+            </button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
   <div class="col-9">
     <ul class="list-unstyled row">
       {% for p in productList %}
