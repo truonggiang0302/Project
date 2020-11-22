@@ -244,3 +244,6 @@ def orderProduct(request, pk):
             return redirect('/thank-you')
     context = {'form': form, 'product': product}
     return render(request, 'order.html', context)
+
+def ThankYou(request):
+    return render(request,'thank_you.html')

@@ -1,5 +1,9 @@
 {% extends "./base.html" %}
+
 {% block menu %}
+    {% with page=3 %}
+    {{block.super}}
+  {% endwith %}
 {% endblock %}
 
 {% block content %}
@@ -7,7 +11,9 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-
+<header>
+    <title>BUY</title>
+</header>
 <div class="container mt-3">
     <h3 style="text-transform: uppercase;font-weight: bold;color: blue;text-align: center;">Đặt mua hàng trực tuyến</h3>
     <form method="POST">{%csrf_token%}
@@ -33,7 +39,7 @@
                 <tr>
                     <th>Số lượng</th>
                     <td>
-                        <div style="width: 50px;text-align: center;">
+                        <div style="width: 10px;text-align: center;">
                             {{form.qty}} {{form.qty.errors}}
                         </div>
                     </td>
@@ -57,11 +63,9 @@
                 </tr>
             </tbody>
         </table>
+        <a class="btn btn-secondary" href="{% url 'detail-product' product.id %}">Quay lại</a>
         <button class="btn btn-primary" type="submit">Đặt mua</button>
     </form>
-<!--    <a href="{% url 'detail-product' product.id %}"><button class="btn btn-secondary" type="submit" >Quay lại</button></a>-->
-
-    
 
 </div>
 

@@ -1,5 +1,6 @@
 {% extends "./base.html" %}
 <link rel="stylesheet" href="/static/css/style.css">
+
 {% block menu %}
     {% with page=1 %}
         {{block.super}}
@@ -7,7 +8,9 @@
 {% endblock %}
 {% block content %}
 <!-- Contents -->
-
+<header>
+    <title>Thế giới PKL</title>
+</header>
 <div id="slides" class="carousel slide" data-ride="carousel">
 	<ul class="carousel-indicators">
 		<li data-target="#slides" data-slide-to="0" class="active"></li>

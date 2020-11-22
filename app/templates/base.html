@@ -4,9 +4,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<header>
-    <title>Thế giới PKL</title>
-</header>
 <style>
     .logo img {
         width: 130px;
@@ -296,8 +293,9 @@
 </style>
 
 <body>
-
+    {% block menu %}
     <div class="flex-wrapper">
+    
         <!--Header-->
         <div class="header">
             <div class="row bg-dark mr-0">
@@ -328,9 +326,9 @@
                 <nav class="navbar navbar-expand-lg p-0 justify-content-center bg-dark navbar-dark sticky-top">
                     <div class="navbar-nav m-1 font-weight-bold text-light ">
                         <a class="nav-item nav-link px-3 {%if page == 1%} active {%endif%}" href="/">TRANG CHỦ</a>
-                        <a class="nav-item nav-link px-3 {%if page == 2%} active {%endif%} " href="#">GIỚI THIỆU</a>
+                        <a class="nav-item nav-link px-3 {%if page == 2%} active {%endif%}" href="#">GIỚI THIỆU</a>
                         <div class="dropdown show">
-                            <a class="nav-item nav-link px-3 dropdown-toggle {%if page == 3%} active {%endif%} " href="#" role="button"
+                            <a class="nav-item nav-link px-3 dropdown-toggle {%if page == 3%} active {%endif%}" href="#" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">HÃNG SẢN PHẨM</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -352,8 +350,11 @@
             </div>
         </div>
         <!-- EndHeader-->
-        {%block content%}
+
+        {% block content %}
         {% endblock %}
+
+ 
         <!--Fooster-->
         <div>
 
@@ -435,5 +436,6 @@
                 </footer>
             </div>
         </div>
-
+    </div>
+    {% endblock %}
 </body>
