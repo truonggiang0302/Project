@@ -6,7 +6,7 @@ from .forms import *
 from datetime import datetime
 # Create your views here.
 
-
+#Trang chủ
 def index(request):
     return render(request,'index.html')
 
@@ -22,7 +22,7 @@ ccList = [
     {'id': 2, 'name': '300cc --> 600cc', 'min': 300, 'max': 600},
     {'id': 3, 'name': 'Trên 1000cc', 'min': 1000},
 ]
-
+#Tìm kiếm
 def searchProduct(request):
     name=request.GET.get('name','')
     productList=Product.objects.filter(name__icontains=name)
@@ -31,6 +31,11 @@ def searchProduct(request):
         'name':name}
     return render(request,'search.html',context)
 
+#Giới thiệu
+def Introduce(request):
+    return render(request,'introduce.html')
+
+#Xem sản phẩm
 def viewAllProduct(request):
     productList = Product.objects.all()
     page = request.GET.get('page', '')
@@ -40,9 +45,6 @@ def viewAllProduct(request):
     end = start + pageSize
     total = len(productList)
     num_page = math.ceil(total/pageSize)
-    # Tìm kiếm
-    #name=request.GET.get('name','')
-    #productList=Product.objects.filter(name__icontains=name)
     categoryId = request.GET.get('categoryId')
     categoryId = int(categoryId) if categoryId else None
     if categoryId:
@@ -223,13 +225,13 @@ def KTM(request):
     }
     return render(request, 'motor/ktm.html', context)
 
-
+#Xem chi tiết sản phẩm
 def viewProductDetail(request, pk):
     product = Product.objects.get(pk=pk)
     context = {'product': product}
     return render(request, 'view_detail_product.html', context)
 
-
+#Mua sản phẩm
 def orderProduct(request, pk):
     product = Product.objects.get(pk=pk)
     form = OrderForm(initial={'qty': 1})
@@ -251,5 +253,6 @@ def orderProduct(request, pk):
     context = {'form': form, 'product': product}
     return render(request, 'order.html', context)
 
+#Cảm ơn
 def ThankYou(request):
     return render(request,'thank_you.html')

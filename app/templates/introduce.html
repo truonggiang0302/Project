@@ -1,0 +1,49 @@
+{% extends "./base.html" %}
+
+{% block menu %}
+{% with page=2 %}
+{{block.super}}
+{% endwith %}
+{% endblock %}
+
+{% block content %}
+<style>
+    p {
+        margin: 0 0 10px;
+    }
+</style>
+<div class="container">
+    <div id="content" class="col-sm-12">
+        <p style="text-align: center;font-size: 24px;"><b>ĐÂY LÀ THẾ GIỚI PHÂN KHỐI LỚN</b> </p>
+        <p style="text-align: justify;">
+            <strong>Thế giới PKL </strong>chuyên cung cấp đến người tiêu dùng những dòng xe motor chạy lướt với chất
+            lượng
+            hoàn hảo nhất. Quý khách hàng có nhu cầu với những chiếc xe phân khối lớn, xe côn tay, xe thể thao tầm trung
+            lướt có thể đến ngay showroom để xem hoặc xem qua các mẫu trên page, website của Mạnh Motor.
+        </p>
+        <p style="text-align: justify;">
+            Toàn bộ sản phẩm tại Showroom đều là những sản phẩm chính hãng được cửa hàng lựa chọn cẩn thận, tỉ mỉ nhằm
+            đưa dến quý khách hàng yêu xe những sản phẩm chất lượng nhất.
+        </p>
+        <p style="text-align: justify;"><b>Chúng tôi cam kết mang tới cho quý khách hàng:</b></p>
+        <p style="text-align: justify;"><i> - Những chiếc xe chất lượng tốt nhất</i></p>
+        <p style="text-align: justify;"><i> - Với giá thành hợp lý nhất</i></p>
+        <p style="text-align: justify;"><i> - Những ưu đãi khủng cho khách hàng</i></p>
+        <p style="text-align: justify;"><i> - Bảo hành tận tâm nhất cho từng chiếc xe</i></p>
+        <p style="text-align: justify;">
+            <b>Đến với Thế Giới PKL là đến với đam mê xe thể thao, là sự lựa chọn uy tín dành
+                cho khách hàng.</b>
+        </p>
+        <p style="text-align: justify;">
+            <img src="/static/images/gioithieu1.jpg">
+            <img src="/static/images/gioithieu2.jpg">
+            <img src="/static/images/gioithieu3.jpg">
+        </p>
+        <p style="text-align: justify;">
+            <span style="text-transform: uppercase;">đặc biệt: </span>tặng bạn bảo dưỡng miễn phí trọn vẹn không giới hạn
+            km tại Thế Giới PKL.
+        </p>
+        <p style="text-align: center;font-size: 24px;color: red;"><b>❤ Thế Giới PKL hân hạnh phục vụ bạn❤</b></p>
+    </div>
+</div>
+{% endblock %}
