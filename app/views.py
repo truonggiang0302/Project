@@ -23,6 +23,13 @@ ccList = [
     {'id': 3, 'name': 'Trên 1000cc', 'min': 1000},
 ]
 
+def searchProduct(request):
+    name=request.GET.get('name','')
+    productList=Product.objects.filter(name__icontains=name)
+    context={
+        'productList':productList,
+        'name':name}
+    return render(request,'search.html',context)
 
 def viewAllProduct(request):
     productList = Product.objects.all()
@@ -34,8 +41,8 @@ def viewAllProduct(request):
     total = len(productList)
     num_page = math.ceil(total/pageSize)
     # Tìm kiếm
-    name=request.GET.get('name','')
-    productList=Product.objects.filter(name__icontains=name)
+    #name=request.GET.get('name','')
+    #productList=Product.objects.filter(name__icontains=name)
     categoryId = request.GET.get('categoryId')
     categoryId = int(categoryId) if categoryId else None
     if categoryId:
@@ -67,7 +74,6 @@ def viewAllProduct(request):
         'end': end,
         'num_page': num_page,
         'page': page,
-        'name':name,
         'priceList': priceList,
         'ccList':ccList,
         'categoryList': categoryList,

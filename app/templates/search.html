@@ -1,0 +1,159 @@
+{% extends "./base.html" %}
+
+{% block menu %}
+  {% with page=3 %}
+    {{block.super}}
+  {% endwith %}
+{% endblock %}
+{% block content %}
+<header>
+  <title>MOTOR</title>
+</header>
+<style>
+  .page {
+    text-align: center;
+  }
+
+  .page a {
+    border: 1px solid black;
+    color: white;
+    background: gray;
+    text-decoration: none;
+    padding: 5px;
+  }
+
+  .form-control {
+    height: 35px;
+    border-radius: 0px;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+  .btn{
+    border-radius: 0px;
+    width: 70px;
+    height: 35px;
+    padding: 0px;
+  }
+  .table h5{
+    color: white;
+  }
+  .table td{
+    list-style: none;
+  }
+  .table li a{
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  .table li a:hover {
+    color:red;
+  }
+  .table li{
+    padding: 5px;
+ 
+  }
+
+</style>
+
+<div class="container">
+  <div class="row">
+    <!--<div class="pt-3">
+      <form>
+        <table>
+          <tr>
+            <td><label class="label">Hãng :</label></td>
+            <td><select name='categoryId' class="form-control">
+                <option value="">--Chọn hãng sản xuất--</option>
+                {% for c in categoryList %}
+                <option {%if c.id == categoryId%}selected{%endif%} value="{{c.id}}">{{c.name}}</option>
+                {% endfor %}
+              </select></td>
+            <td><label class="label">Phân khối :</label></td>
+            <td><select name='ccId' class="form-control">
+                {% for cc in ccList %}
+                <option value="">--Chọn phân khối--</option>
+                <option {%if cc.id == ccId%}selected{%endif%} value="{{cc.id}}">{{cc.name}}</option>
+                {% endfor %}
+              </select></td>
+            <td><label class="label">Giá :</label></td>
+            <td><select name='priceId' class="form-control">
+                <option value="">--Chọn mức giá--</option>
+                {% for pr in priceList %}
+                <option {%if pr.id == priceId%}selected{%endif%} value="{{pr.id}}">{{pr.name}}</option>
+                {% endfor %}
+              </select></td>
+            <td><button class="btn btn-primary" type="submit">
+                Tìm kiếm
+              </button></td>
+          </tr>
+        </table>
+      </form>
+    </div>-->
+    <div class="col-9">
+      <ul class="list-unstyled row">
+        {% for p in productList %}
+        <li class="list-item col-sm-4 mt-4">
+          <div class='item-container'>
+            <a href="{% url 'detail-product' p.id %}" class='product-item'>
+              <img src="/{{p.image}}" class='product-image'>
+              <div class="item-info">
+                <div>
+                  <span class='product-name' style="font-weight: bold;">{{p.name}}</span>
+                </div>
+                <div>
+                  <span>Dòng :</span>
+                  <span>{{p.type_vehicle}}</span>
+                </div>
+                <div>
+                  <span class='price-title'>Giá bán :</span>
+                  <span class='price' style="color: red;">{{p.price|floatformat:"0" }} triệu đồng</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <br>
+      <div class="page">
+        <a href="/search?page=1">1</a>
+        {% if page > 1 %}
+        <a href="/search?page={{page|add:-1}}">Prev</a>
+        {% else %}
+        <span>Prev</span>
+        {% endif %}
+        {% if page < num_page %}
+        <a href="/search?page={{page|add:1}}">Next</a>
+        {% else %}
+        <span>Next</span>
+        {% endif %}
+        <a href="/search?page={{num_page}}">{{num_page}}</a>
+      </div>
+    </div>
+    <div class="col-3">
+      <table class="table border border-secondary">
+        <tr>
+          <td style=" background: gray;text-align: center;"><h5>DANH MỤC SẢN PHẨM</h5></td>
+        </tr>
+        <tr>
+            <td style="background: gainsboro;">
+              <li><a href="{% url 'honda' %}">Honda</a></li>
+              <li><a href="{% url 'yamaha' %}">Yamaha</a></li>
+              <li><a href="{% url 'ducati' %}">Ducati</a></li>
+              <li><a href="{% url 'kawasaki' %}">Kawasaki</a></li>
+              <li><a href="{% url 'bmw' %}">BMW</a></li>
+              <li><a href="{% url 'suzuki' %}">Suzuki</a></li>
+              <li><a href="{% url 'ktm' %}">KTM</a></li>
+            </td>
+          </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+</div>
+
+
+<br>
+{% endblock %}
