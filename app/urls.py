@@ -15,5 +15,6 @@ urlpatterns = [
     path('ktm',KTM,name='ktm'),
     path('detail-product/<pk>',viewProductDetail,name='detail-product'),
     path('order-product/<pk>',orderProduct,name='order-product'),
+    path('lien-he',Contact,name='lien-he'),
     path('thank-you',ThankYou,name='thank-you'),
 ]

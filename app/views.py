@@ -256,3 +256,21 @@ def orderProduct(request, pk):
 #Cảm ơn
 def ThankYou(request):
     return render(request,'thank_you.html')
+
+#Liên hệ
+def Contact(request):
+    form = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            print('data', data)
+            contact = Contact()
+            contact.customer_name = data['customer_name']
+            contact.customer_email = data['customer_email']
+            contact.customer_address = data['customer_address']
+            contact.order_date = datetime.now()
+            contact.save()
+            return redirect('/thank-you')
+    context = {'form': form}
+    return render(request, 'contact.html', context)

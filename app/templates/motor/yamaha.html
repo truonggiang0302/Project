@@ -20,7 +20,8 @@
   }
 </style>
 <div class="container">
-  <div class="col-9">
+  <div class="row">
+    <div class="col-9">
     <ul class="list-unstyled row">
       {% for p in product %}
       <li class="list-item col-sm-4 mt-3">
@@ -61,5 +62,25 @@
       <a href="{% url 'yamaha' %}?page={{num_page}}">{{num_page}}</a>
     </div>
   </div>
+  <div class="col-3 pt-3">
+    <table class="table border border-secondary">
+      <tr>
+        <td style=" background: gray;text-align: center;"><h5>DANH MỤC SẢN PHẨM</h5></td>
+      </tr>
+      <tr>
+          <td style="background: gainsboro;">
+            <li><a href="{% url 'honda' %}">Honda</a></li>
+            <li><a href="{% url 'yamaha' %}">Yamaha</a></li>
+            <li><a href="{% url 'ducati' %}">Ducati</a></li>
+            <li><a href="{% url 'kawasaki' %}">Kawasaki</a></li>
+            <li><a href="{% url 'bmw' %}">BMW</a></li>
+            <li><a href="{% url 'suzuki' %}">Suzuki</a></li>
+            <li><a href="{% url 'ktm' %}">KTM</a></li>
+          </td>
+        </tr>
+    </table>
+  </div>
+  </div>
+  
 </div>
 {% endblock %}

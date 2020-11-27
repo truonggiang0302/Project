@@ -35,3 +35,10 @@ class Order(models.Model):
     order_date=models.DateTimeField()
     deliver_date=models.DateTimeField(null=True)
     status=models.IntegerField()
+
+class Contact(models.Model):
+    customer_name=models.CharField(max_length=50,default='')
+    customer_email=models.CharField(max_length=100,default='')
+    customer_phone=models.CharField(max_length=20,default='')
+    customer_content=models.TextField(default='')
+    order_date=models.DateTimeField()

@@ -314,11 +314,11 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 ">
                     <div class="search">
-                        <form class="form-inline md-form form-sm float-right">
-                            <a href="/search"> <input class="form-control form-control-sm ml-3 w-35 p-3 " type="text"
+                        <form action="/search" class="form-inline md-form form-sm float-right">
+                            <input class="form-control form-control-sm ml-3 w-35 p-3 " type="text"
                                     name="name" value="{{name}}" placeholder="Nhập từ khóa tìm kiếm"
                                     aria-label="Search">
-                                <button class="fas fa-search" style="height:36px" type="submit"></button></a>
+                            <button class="fas fa-search" style="height:36px" type="submit"></button></a>
                         </form>
                     </div>
                 </div>
@@ -345,7 +345,7 @@
                             </div>
                         </div>
                         <a class="nav-item nav-link px-3 {%if page == 4%} active {%endif%}" href="#">TIN TỨC</a>
-                        <a class="nav-item nav-link px-3 {%if page == 5%} active {%endif%}" href="#">LIÊN HỆ</a>
+                        <a class="nav-item nav-link px-3 {%if page == 5%} active {%endif%}" href="/lien-he">LIÊN HỆ</a>
                     </div>
                 </nav>
             </div>
@@ -367,15 +367,15 @@
                         <h3>Thế giới <span>PKL</span></h3>
 
                         <p class="footer-links">
-                            <a href="#" class="link-1">Home</a>
+                            <a href="/" class="link-1">Home</a>
 
-                            <a href="#">Giới thiệu</a>
+                            <a href="/gioi-thieu">Giới thiệu</a>
 
-                            <a href="#">Tin tức</a>
+                            <a href="/tin-tuc">Tin tức</a>
 
-                            <a href="#">Sản phẩm</a>
+                            <a href="/all-product">Sản phẩm</a>
 
-                            <a href="#">Liên hệ</a>
+                            <a href="/lien-he">Liên hệ</a>
                         </p>
 
                         <p class="footer-company-name">MOTOR PKL © 2020</p>
