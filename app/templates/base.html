@@ -329,18 +329,18 @@
                         <a class="nav-item nav-link px-3 {%if page == 1%} active {%endif%}" href="/">TRANG CHỦ</a>
                         <a class="nav-item nav-link px-3 {%if page == 2%} active {%endif%}" href="/gioi-thieu">GIỚI THIỆU</a>
                         <div class="dropdown show">
-                            <a class="nav-item nav-link px-3 dropdown-toggle {%if page == 3%} active {%endif%}" href="#"
+                            <a class="nav-item nav-link px-3 dropdown-toggle {%if tab == 3%} active {%endif%}" href="#"
                                 role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">HÃNG SẢN PHẨM</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item " href="{% url 'all-product' %}">ALL</a>
-                                <a class="dropdown-item" href="{% url 'honda' %}">HONDA</a>
-                                <a class="dropdown-item" href="{% url 'yamaha' %}">YAHAMA</a>
-                                <a class="dropdown-item" href="{% url 'ducati' %}">DUCATI</a>
-                                <a class="dropdown-item" href="{% url 'kawasaki' %}">KAWASAKI</a>
-                                <a class="dropdown-item" href="{% url 'bmw' %}">BMW</a>
-                                <a class="dropdown-item" href="{% url 'suzuki' %}">SUZUKI</a>
-                                <a class="dropdown-item" href="{% url 'ktm' %}">KTM</a>
+                                <a class="dropdown-item" href="/all-product?categoryId=1">HONDA</a>
+                                <a class="dropdown-item" href="/all-product?categoryId=2">YAHAMA</a>
+                                <a class="dropdown-item" href="/all-product?categoryId=3">DUCATI</a>
+                                <a class="dropdown-item" href="/all-product?categoryId=4">KAWASAKI</a>
+                                <a class="dropdown-item" href="/all-product?categoryId=5">BMW</a>
+                                <a class="dropdown-item" href="/all-product?categoryId=6">SUZUKI</a>
+                                <a class="dropdown-item" href="/all-product?categoryId=7">KTM</a>
                                 <a class="dropdown-item" href="#">HÃNG KHÁC</a>
                             </div>
                         </div>

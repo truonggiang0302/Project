@@ -6,13 +6,15 @@
 {% endwith %}
 {% endblock %}
 {% block content %}
+<style>
 
+</style>
 <div class="container mt-3">
     <form method="POST">{%csrf_token%}
-        <p>THÔNG TIN CỦA BẠN</p>
+        <p style="font-size: 24px; text-align: center;color: red;"><b>THÔNG TIN CỦA BẠN</b></p>
         <div class="row">
             <div class="col-2">
-                <p><b style="color: red;">*</b><span>Họ và tên: </span></p>
+                <p><b style="color: red;">* </b><span><b>Họ và tên: </b></span></p>
             </div>
             <div class="col-10">
                 <p>{{form.customer_name}} {{form.customer_name.errors}}</p>
@@ -20,7 +22,7 @@
         </div>
         <div class="row">
             <div class="col-2">
-                <p><b style="color: red;">*</b><span>Địa chỉ Email: </span></p>
+                <p><b style="color: red;">* </b><span><b>Địa chỉ Email: </b></span></p>
             </div>
             <div class="col-10">
                 <p>{{form.customer_email}} {{form.customer_email.errors}}</p>
@@ -28,7 +30,7 @@
         </div>
         <div class="row">
             <div class="col-2">
-                <p><b style="color: red;">*</b><span>Điện thoại: </span></p>
+                <p><b style="color: red;">* </b><span><b>Điện thoại: </b></span></p>
             </div>
             <div class="col-10">
                 <p>{{form.customer_phone}} {{form.customer_phone.errors}}</p>
@@ -36,7 +38,7 @@
         </div>
         <div class="row">
             <div class="col-2">
-                <p><b style="color: red;">*</b><span>Nội dung: </span></p>
+                <p><b style="color: red;">* </b><span><b>Nội dung: </b></span></p>
             </div>
             <div class="col-10">
                 <p>{{form.customer_content}} {{form.customer_content.errors}}</p>

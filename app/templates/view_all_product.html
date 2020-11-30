@@ -1,7 +1,7 @@
 {% extends "./base.html" %}
 
 {% block menu %}
-  {% with page=3 %}
+  {% with tab=3 %}
     {{block.super}}
   {% endwith %}
 {% endblock %}
@@ -118,18 +118,18 @@
       </ul>
       <br>
       <div class="page">
-        <a href="/all-product?page=1">1</a>
+        <a href="/all-product?categoryId={{categoryId}}?page=1">1</a>
         {% if page > 1 %}
-        <a href="/all-product?page={{page|add:-1}}">Prev</a>
+        <a href="/all-product?categoryId={{categoryId}}?page={{page|add:-1}}">Prev</a>
         {% else %}
         <span>Prev</span>
         {% endif %}
         {% if page < num_page %}
-        <a href="/all-product?page={{page|add:1}}">Next</a>
+        <a href="/all-product?categoryId={{categoryId}}?page={{page|add:1}}">Next</a>
         {% else %}
         <span>Next</span>
         {% endif %}
-        <a href="/all-product?page={{num_page}}">{{num_page}}</a>
+        <a href="/all-product?categoryId={{categoryId}}?page={{num_page}}">{{num_page}}</a>
       </div>
     </div>
     <div class="col-3">

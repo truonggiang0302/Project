@@ -4,6 +4,7 @@ from django.conf import settings
 import math
 from .forms import *
 from datetime import datetime
+from django.db.models import Q
 # Create your views here.
 
 #Trang chủ
@@ -46,8 +47,8 @@ def viewAllProduct(request):
     total = productList.count()
     num_page = math.ceil(total/pageSize)
     categoryId = request.GET.get('categoryId')
-    categoryId = int(categoryId) if categoryId else None
     if categoryId:
+        categoryId = int(categoryId)
         productList = productList.filter(category__id=categoryId)
     categoryList = Category.objects.all()
     priceId = request.GET.get('priceId')
@@ -82,6 +83,7 @@ def viewAllProduct(request):
         'categoryId': categoryId,
         'priceId': priceId,
         'ccId':ccId,
+        'productList':productList,
     }
     return render(request, 'view_all_product.html', context)
 
