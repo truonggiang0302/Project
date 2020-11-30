@@ -92,7 +92,7 @@ def Honda(request):
     pageSize = settings.PAGE_SIZE
     start = (page-1)*pageSize
     end = start + pageSize
-    total = len(product)
+    total = product.count()
     num_page = math.ceil(total/pageSize)
     context = {
         'product': product[start:end],

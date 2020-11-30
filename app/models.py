@@ -35,6 +35,8 @@ class Order(models.Model):
     order_date=models.DateTimeField()
     deliver_date=models.DateTimeField(null=True)
     status=models.IntegerField()
+    def __str__(self):
+        return self.product.name
 
 class Contact(models.Model):
     customer_name=models.CharField(max_length=50,default='')
@@ -42,3 +44,5 @@ class Contact(models.Model):
     customer_phone=models.CharField(max_length=20,default='')
     customer_content=models.TextField(default='')
     order_date=models.DateTimeField()
+    def __str__(self):
+        return self.customer_name
