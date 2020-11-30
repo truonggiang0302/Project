@@ -44,9 +44,7 @@ def viewAllProduct(request):
     start = (page-1)*pageSize
     end = start + pageSize
     productList = Product.objects.all()
-    total = productList.count()
-    num_page = math.ceil(total/pageSize)
-    categoryId = request.GET.get('categoryId')
+    categoryId = request.GET.get('categoryId','')
     if categoryId:
         categoryId = int(categoryId)
         productList = productList.filter(category__id=categoryId)
@@ -70,6 +68,8 @@ def viewAllProduct(request):
         productList = productList.filter(cc__gte=minCC)
     if maxCC:
         productList = productList.filter(cc__lte=maxCC)
+    total = productList.count()
+    num_page = math.ceil(total/pageSize)
     #Context
     context = {
         'productList': productList[start:end],
@@ -83,148 +83,8 @@ def viewAllProduct(request):
         'categoryId': categoryId,
         'priceId': priceId,
         'ccId':ccId,
-        'productList':productList,
     }
     return render(request, 'view_all_product.html', context)
-
-def Honda(request):
-    product = Product.objects.filter(category__id=1)
-    page = request.GET.get('page', '')
-    page = int(page) if page.isdigit() else 1
-    pageSize = settings.PAGE_SIZE
-    start = (page-1)*pageSize
-    end = start + pageSize
-    total = product.count()
-    num_page = math.ceil(total/pageSize)
-    context = {
-        'product': product[start:end],
-        'start': start,
-        'end': end,
-        'total': total,
-        'num_page': num_page,
-        'page': page
-    }
-    return render(request, 'motor/honda.html', context)
-
-
-def Yamaha(request):
-    product = Product.objects.filter(category__id=2)
-    page = request.GET.get('page', '')
-    page = int(page) if page.isdigit() else 1
-    pageSize = settings.PAGE_SIZE
-    start = (page-1)*pageSize
-    end = start + pageSize
-    total = len(product)
-    num_page = math.ceil(total/pageSize)
-    context = {
-        'product': product[start:end],
-        'start': start,
-        'end': end,
-        'total': total,
-        'num_page': num_page,
-        'page': page
-    }
-    return render(request, 'motor/yamaha.html', context)
-
-
-def Ducati(request):
-    product = Product.objects.filter(category__id=3)
-    page = request.GET.get('page', '')
-    page = int(page) if page.isdigit() else 1
-    pageSize = settings.PAGE_SIZE
-    start = (page-1)*pageSize
-    end = start + pageSize
-    total = len(product)
-    num_page = math.ceil(total/pageSize)
-    context = {
-        'product': product[start:end],
-        'start': start,
-        'end': end,
-        'total': total,
-        'num_page': num_page,
-        'page': page
-    }
-    return render(request, 'motor/ducati.html', context)
-
-
-def Kawasaki(request):
-    product = Product.objects.filter(category__id=4)
-    page = request.GET.get('page', '')
-    page = int(page) if page.isdigit() else 1
-    pageSize = settings.PAGE_SIZE
-    start = (page-1)*pageSize
-    end = start + pageSize
-    total = len(product)
-    num_page = math.ceil(total/pageSize)
-    context = {
-        'product': product[start:end],
-        'start': start,
-        'end': end,
-        'total': total,
-        'num_page': num_page,
-        'page': page
-    }
-    return render(request, 'motor/kawasaki.html', context)
-
-
-def BMW(request):
-    product = Product.objects.filter(category__id=5)
-    page = request.GET.get('page', '')
-    page = int(page) if page.isdigit() else 1
-    pageSize = settings.PAGE_SIZE
-    start = (page-1)*pageSize
-    end = start + pageSize
-    total = len(product)
-    num_page = math.ceil(total/pageSize)
-    context = {
-        'product': product[start:end],
-        'start': start,
-        'end': end,
-        'total': total,
-        'num_page': num_page,
-        'page': page
-    }
-    return render(request, 'motor/bmw.html', context)
-
-
-def Suzuki(request):
-    product = Product.objects.filter(category__id=6)
-    page = request.GET.get('page', '')
-    page = int(page) if page.isdigit() else 1
-    pageSize = settings.PAGE_SIZE
-    start = (page-1)*pageSize
-    end = start + pageSize
-    total = len(product)
-    num_page = math.ceil(total/pageSize)
-    context = {
-        'product': product[start:end],
-        'start': start,
-        'end': end,
-        'total': total,
-        'num_page': num_page,
-        'page': page
-    }
-    return render(request, 'motor/suzuki.html', context)
-
-
-def KTM(request):
-    product = Product.objects.filter(category__id=7)
-    page = request.GET.get('page', '')
-    page = int(page) if page.isdigit() else 1
-    pageSize = settings.PAGE_SIZE
-    start = (page-1)*pageSize
-    end = start + pageSize
-    total = len(product)
-    num_page = math.ceil(total/pageSize)
-    context = {
-        'product': product[start:end],
-        'start': start,
-        'end': end,
-        'total': total,
-        'num_page': num_page,
-        'page': page
-    }
-    return render(request, 'motor/ktm.html', context)
 
 #Xem chi tiết sản phẩm
 def viewProductDetail(request, pk):
