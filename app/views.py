@@ -37,13 +37,13 @@ def Introduce(request):
 
 #Xem sản phẩm
 def viewAllProduct(request):
-    productList = Product.objects.all()
     page = request.GET.get('page', '')
     page = int(page) if page.isdigit() else 1
     pageSize = settings.PAGE_SIZE
     start = (page-1)*pageSize
     end = start + pageSize
-    total = len(productList)
+    productList = Product.objects.all()
+    total = productList.count()
     num_page = math.ceil(total/pageSize)
     categoryId = request.GET.get('categoryId')
     categoryId = int(categoryId) if categoryId else None
@@ -79,7 +79,6 @@ def viewAllProduct(request):
         'priceList': priceList,
         'ccList':ccList,
         'categoryList': categoryList,
-        'productList': productList,
         'categoryId': categoryId,
         'priceId': priceId,
         'ccId':ccId,
@@ -258,7 +257,7 @@ def ThankYou(request):
     return render(request,'thank_you.html')
 
 #Liên hệ
-def Contact(request):
+def ContactView(request):
     form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -268,7 +267,8 @@ def Contact(request):
             contact = Contact()
             contact.customer_name = data['customer_name']
             contact.customer_email = data['customer_email']
-            contact.customer_address = data['customer_address']
+            contact.customer_phone = data['customer_phone']
+            contact.customer_content=data['customer_content']
             contact.order_date = datetime.now()
             contact.save()
             return redirect('/thank-you')
