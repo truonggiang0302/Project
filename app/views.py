@@ -4,7 +4,6 @@ from django.conf import settings
 import math
 from .forms import *
 from datetime import datetime
-from django.db.models import Q
 # Create your views here.
 
 #Trang chủ
@@ -27,9 +26,21 @@ ccList = [
 def searchProduct(request):
     name=request.GET.get('name','')
     productList=Product.objects.filter(name__icontains=name)
+    page = request.GET.get('page', '')
+    page = int(page) if page.isdigit() else 1
+    pageSize = settings.PAGE_SIZE
+    start = (page-1)*pageSize
+    end = start + pageSize
+    total = productList.count()
+    num_page = math.ceil(total/pageSize)
     context={
-        'productList':productList,
-        'name':name}
+        'productList':productList[start:end],
+        'name':name,
+        'start': start,
+        'end': end,
+        'num_page': num_page,
+        'page': page,
+        }
     return render(request,'search.html',context)
 
 #Giới thiệu
@@ -37,7 +48,7 @@ def Introduce(request):
     return render(request,'introduce.html')
 
 #Xem sản phẩm
-def viewAllProduct(request):
+def ViewAllProduct(request):
     page = request.GET.get('page', '')
     page = int(page) if page.isdigit() else 1
     pageSize = settings.PAGE_SIZE
