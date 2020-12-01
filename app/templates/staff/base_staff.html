@@ -5,12 +5,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 {% block menu %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary p-0">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary p-0">
   <div class="navbar-nav">
-    <a class="nav-item nav-link {%if page == 1%} active {%endif%}" href="{% url 'list-category' %}">Quản lý nhóm sản
-      phẩm</a>
-    <a class="nav-item nav-link {%if page == 2%} active {%endif%}" href="#">Quản lý sản phẩm</a>
-    <a class="nav-item nav-link {%if page == 3%} active {%endif%}" href="#">Quản lý đơn hàng</a>
+    <a class="nav-item nav-link {%if page == 1%} active {%endif%}" href="{% url 'list-category' %}">Quản lý hãng sản xuất</a>
+    <a class="nav-item nav-link {%if page == 2%} active {%endif%}" href="{% url 'list-product' %}">Quản lý dòng xe</a>
+    <a class="nav-item nav-link {%if page == 3%} active {%endif%}" href="{% url 'list-order' %}">Quản lý đơn hàng</a>
   </div>
 
   <ul class="navbar-nav ml-auto">

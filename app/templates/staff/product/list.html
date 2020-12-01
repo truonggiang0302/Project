@@ -1,7 +1,7 @@
 {% extends "../base_staff.html" %}
 
 {% block menu %} 
-  {% with page=1 %}
+  {% with page=2 %}
     {{block.super}}
   {% endwith %}
 {% endblock %}
@@ -18,29 +18,29 @@
         </tr>
       </thead>
       <tbody>
-        {% for c in categoryList %}
+        {% for p in productList %}
           <tr>
             <td>{{forloop.counter}}</td>
-            <td>{{c.code}}</td>
-            <td>{{c.name}}</td>
+            <td>{{p.code}}</td>
+            <td>{{p.name}}</td>
             <td>
-              <a href='{% url "update-category" c.id %}' 
+              <a href='{% url "update-product" p.id %}' 
                 class="btn btn-sm btn-primary">Chỉnh sửa</a>
                 
-              <a href='javascript:deleteCategory({{c.id}})' 
+              <a href='javascript:deleteProduct({{p.id}})' 
                  class="btn btn-sm btn-danger">Xóa</a>
             </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
-    <a href='/staff/create-category'
-       class="btn btn-primary">Thêm hãng sản xuất</a>
+    <a href='/staff/create-product'
+       class="btn btn-primary">Thêm dòng xe</a>
   </div>
   <script>
-    function deleteCategory(id) {
+    function deleteProduct(id) {
       if(confirm('Bạn có chắc chắn muốn xóa?')){
-        location.href = '/staff/delete-category/' + id;
+        location.href = '/staff/delete-product/' + id;
       }
     }
   </script>

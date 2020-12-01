@@ -1,0 +1,47 @@
+{% extends "../base_staff.html" %}
+
+{% block menu %} 
+  {% with page=3 %}
+    {{block.super}}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Tên KH</th>
+                <th>SĐT</th>
+                <th>Ngày mua hàng</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for o in orderList %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{o.product.name}}</td>
+                <td>{{o.qty}}</td>
+                <td>{{o.customer_name}}</td>
+                <td>{{o.customer_phone}}</td>
+                <td>{{o.order_date|date:"d/m/yy h:i:s"}}</td>
+                <td>
+                    {% if o.status == 0 %} NEW {% endif %}
+                    {% if o.status == 1 %} DELIVERED {% endif %}
+                    {% if o.status == 2 %} CANCELED {% endif %}
+                </td>
+                <td>
+                    <a title="Xem" href="{% url 'view-order' o.id %}" ><i class="fa fa-eye">Xem</i></a>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
