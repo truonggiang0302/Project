@@ -43,6 +43,6 @@ class Contact(models.Model):
     customer_email=models.CharField(max_length=100,default='')
     customer_phone=models.CharField(max_length=20,default='')
     customer_content=models.TextField(default='')
-    order_date=models.DateTimeField()
+    contact_date=models.DateTimeField()
     def __str__(self):
         return self.customer_name

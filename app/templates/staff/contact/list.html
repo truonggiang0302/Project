@@ -1,0 +1,47 @@
+{% extends "../base_staff.html" %}
+
+{% block menu %} 
+  {% with page=4 %}
+    {{block.super}}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+<div class="container pt-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên</th>
+                <th>SĐT</th>
+                <th>Thời gian</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in contactList %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{c.customer_name}}</td>
+                <td>{{c.customer_phone}}</td>
+                <td>{{c.contact_date|date:"d/m/yy h:i:s"}}</td>
+                <td>
+                    <a title="Xem" href="{% url 'view-contact' c.id %}" ><i class="fa fa-eye">Xem chi tiết</i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href='/staff/list-contact?page=1'>&laquo;</a></li>
+        
+        <li class="page-item"><a class="page-link" 
+          {% if page > 1 %} href='/staff/list-contact?page={{page|add:-1}}' {% endif %}>&lsaquo;</a></li>
+    
+        <li class="page-item"><a class="page-link" 
+          {% if page < numpage %} href='/staff/list-contact?page={{page|add:1}}' {% endif %}>&rsaquo;</a></li>
+    
+        <li class="page-item"><a class="page-link" href='/staff/list-contact?page={{numpage}}'>&raquo;</a></li>
+      </ul> 
+</div>
+{% endblock %}

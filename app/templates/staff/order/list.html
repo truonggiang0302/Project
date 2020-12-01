@@ -23,7 +23,7 @@
         <tbody>
             {% for o in orderList %}
             <tr>
-                <td>{{forloop.counter}}</td>
+                <td>{{forloop.counter|add:start}}</td>
                 <td>{{o.product.name}}</td>
                 <td>{{o.qty}}</td>
                 <td>{{o.customer_name}}</td>
@@ -42,6 +42,17 @@
             {% endfor %}
         </tbody>
     </table>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href='/staff/list-order?page=1'>&laquo;</a></li>
+        
+        <li class="page-item"><a class="page-link" 
+          {% if page > 1 %} href='/staff/list-order?page={{page|add:-1}}' {% endif %}>&lsaquo;</a></li>
+    
+        <li class="page-item"><a class="page-link" 
+          {% if page < numpage %} href='/staff/list-order?page={{page|add:1}}' {% endif %}>&rsaquo;</a></li>
+    
+        <li class="page-item"><a class="page-link" href='/staff/list-order?page={{numpage}}'>&raquo;</a></li>
+      </ul> 
 
 </div>
 {% endblock %}

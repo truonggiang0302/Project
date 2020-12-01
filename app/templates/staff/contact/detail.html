@@ -1,0 +1,40 @@
+{% extends "../base_staff.html" %}
+
+{% block menu %}
+{% with page=4 %}
+{{block.super}}
+{% endwith %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <table class="table">
+        <tr>
+            <td colspan="2">
+                <h5>Thông tin người liên hệ</h5>
+            </td>
+        </tr>
+        <tr>
+            <td>Tên</td>
+            <td>{{contact.customer_name}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{contact.customer_email}}</td>
+        </tr>
+        <tr>
+            <td>SĐT</td>
+            <td>{{contact.customer_phone}}</td>
+        </tr>
+        <tr>
+            <td>Nội dung</td>
+            <td>{{contact.customer_content}}</td>
+        </tr>
+        <tr>
+            <td>Thời gian</td>
+            <td>{{contact.contact_date|date:'d/m/yy h:i:s'}}</td>
+        </tr>
+    </table>
+    <a class="btn btn-primary" href="/staff/list-contact">Quay lại</a>
+</div>
+{% endblock %}

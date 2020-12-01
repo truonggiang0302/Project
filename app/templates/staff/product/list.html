@@ -20,7 +20,7 @@
       <tbody>
         {% for p in productList %}
           <tr>
-            <td>{{forloop.counter}}</td>
+            <td>{{forloop.counter|add:start}}</td>
             <td>{{p.code}}</td>
             <td>{{p.name}}</td>
             <td>
@@ -34,6 +34,17 @@
         {% endfor %}
       </tbody>
     </table>
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href='/staff/list-product?page=1'>&laquo;</a></li>
+      
+      <li class="page-item"><a class="page-link" 
+        {% if page > 1 %} href='/staff/list-product?page={{page|add:-1}}' {% endif %}>&lsaquo;</a></li>
+  
+      <li class="page-item"><a class="page-link" 
+        {% if page < numpage %} href='/staff/list-product?page={{page|add:1}}' {% endif %}>&rsaquo;</a></li>
+  
+      <li class="page-item"><a class="page-link" href='/staff/list-product?page={{numpage}}'>&raquo;</a></li>
+    </ul> 
     <a href='/staff/create-product'
        class="btn btn-primary">Thêm dòng xe</a>
   </div>

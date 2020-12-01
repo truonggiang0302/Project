@@ -20,7 +20,7 @@
       <tbody>
         {% for c in categoryList %}
           <tr>
-            <td>{{forloop.counter}}</td>
+            <td>{{forloop.counter|add:start}}</td>
             <td>{{c.code}}</td>
             <td>{{c.name}}</td>
             <td>
@@ -34,9 +34,20 @@
         {% endfor %}
       </tbody>
     </table>
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href='/staff/list-category?page=1'>&laquo;</a></li>
+      
+      <li class="page-item"><a class="page-link" 
+        {% if page > 1 %} href='/staff/list-category?page={{page|add:-1}}' {% endif %}>&lsaquo;</a></li>
+  
+      <li class="page-item"><a class="page-link" 
+        {% if page < numpage %} href='/staff/list-category?page={{page|add:1}}' {% endif %}>&rsaquo;</a></li>
+  
+      <li class="page-item"><a class="page-link" href='/staff/list-category?page={{numpage}}'>&raquo;</a></li>
+    </ul> 
     <a href='/staff/create-category'
        class="btn btn-primary">Thêm hãng sản xuất</a>
-  </div>
+</div>
   <script>
     function deleteCategory(id) {
       if(confirm('Bạn có chắc chắn muốn xóa?')){
