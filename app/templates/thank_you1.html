@@ -1,0 +1,17 @@
+{% extends "./base.html" %}
+
+{% block menu%}
+    {% with page=5 %}
+        {{block.super}}
+    {% endwith %}
+{% endblock%}
+{% block content %}
+<header>
+    <title>Xin cảm ơn</title>
+</header>
+<div class="container mt-5 mb-5">
+    <p><h5>Phản hồi của bạn đã được gửi lên.</h5></p>
+    <p><h5>Xin cảm ơn</h5></p>
+    <a class="btn btn-primary" href='/'>Quay lại trang chủ</a>
+</div>
+{% endblock %}

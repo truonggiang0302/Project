@@ -142,8 +142,12 @@ def ContactView(request):
             contact.customer_email = data['customer_email']
             contact.customer_phone = data['customer_phone']
             contact.customer_content=data['customer_content']
-            contact.order_date = datetime.now()
+            contact.contact_date = datetime.now()
             contact.save()
-            return redirect('/thank-you')
+            return redirect('/thank-you1')
     context = {'form': form}
     return render(request, 'contact.html', context)
+
+#thankyou1
+def ThankYou1(request):
+    return render(request,'thank_you1.html')

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'app',
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,3 +127,6 @@ STATICFILES_DIRS = [
 
 USE_L10N=False
 PAGE_SIZE=9
+
+LOGIN_REDIRECT_URL = 'staff-home'
+LOGOUT_REDIRECT_URL = 'staff-home'

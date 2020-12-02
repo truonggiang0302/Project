@@ -6,9 +6,7 @@
 {% endwith %}
 {% endblock %}
 {% block content %}
-<style>
 
-</style>
 <div class="container mt-3">
     <div class="row border border-dark bg-light">
         <div class="col-md-3 text-center">
@@ -29,65 +27,31 @@
     </div>
     <form method="POST">{%csrf_token%}
         <p style="font-size: 24px; text-align: center;color: red;"><b>THÔNG TIN CỦA BẠN</b></p>
-        <div class="row">
-            <div class="col-2">
-                <p><b style="color: red;">* </b><span><b>Họ và tên: </b></span></p>
-            </div>
-            <div class="col-10">
-                <p>{{form.customer_name}} {{form.customer_name.errors}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <p><b style="color: red;">* </b><span><b>Địa chỉ Email: </b></span></p>
-            </div>
-            <div class="col-10">
-                <p>{{form.customer_email}} {{form.customer_email.errors}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <p><b style="color: red;">* </b><span><b>Điện thoại: </b></span></p>
-            </div>
-            <div class="col-10">
-                <p>{{form.customer_phone}} {{form.customer_phone.errors}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <p><b style="color: red;">* </b><span><b>Nội dung: </b></span></p>
-            </div>
-            <div class="col-10">
-                <p>{{form.customer_content}} {{form.customer_content.errors}}</p>
-            </div>
-        </div>
-        <!--<div class="table">
-            <tbody>
-                <tr>
-                    <td colspan="2">
-                        <h4>THÔNG TIN CỦA BẠN</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <th><b style="color: red;">*</b>Họ và tên: </th>
-                    <td>{{form.customer_name}} {{form.customer_name.errors}}</td>
-                </tr>
-                <tr>
-                    <th><b style="color: red;">*</b>Địa chỉ Email: </th>
-                    <td>{{form.customer_email}} {{form.customer_email.errors}}</td>
-                </tr>
-                <tr>
-                    <th><b style="color: red;">*</b>Điện thoại: </th>
-                    <td>{{form.customer_phone}} {{form.customer_phone.errors}}</td>
-                </tr>
-                <tr>
-                    <th><b style="color: red;">*</b>Nội dung: </th>
-                    <td>{{form.customer_content}} {{form.customer_content.errors}}</td>
-                </tr>
-            </tbody>
-        </div>-->
+        <table>
+            <tr>
+                <td><b><span style="color: red;">* </span> Họ và tên:</b></td>
+                <td>{{form.customer_name}} {{form.customer_name.errors}}</td>
+            </tr>
+            <tr>
+                <td><b><span style="color: red;">* </span> Địa chỉ Email:</b></td>
+                <td>{{form.customer_email}} {{form.customer_email.errors}}</td>
+            </tr>
+            <tr>
+                <td><b><span style="color: red;">* </span> Điện thoại:</b></td>
+                <td>{{form.customer_phone}} {{form.customer_phone.errors}}</td>
+            </tr>
+            <tr>
+                <td><b><span style="color: red;">* </span> Nội dung:</b></td>
+                <td>{{form.customer_content}} {{form.customer_content.errors}}</td>
+            </tr>
+        </table>
         <button class="btn btn-primary" type="submit">Gửi</button>
     </form>
 
 </div>
+<script>
+    $(document).ready(function () {
+        $('.table input').addClass('form-control');
+    });
+</script>
 {% endblock %}

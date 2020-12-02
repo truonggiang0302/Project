@@ -9,9 +9,9 @@ import math
 from django.contrib.auth.decorators import login_required
 
 PAGE_SIZE = 5
+
 # Category
-
-
+@login_required
 def listCategory(request):
     page = request.GET.get('page', '')
     page = int(page) if page.isdigit() else 1
@@ -29,29 +29,29 @@ def listCategory(request):
     }
     return render(request, 'staff/category/list.html', context)
 
-
+@method_decorator(login_required,name='dispatch')
 class CategoryCreateView(CreateView):
     model = Category
     fields = '__all__'
-    success_url = '/staff/list-category'
+    success_url = '/staff'
     template_name = 'staff/category/form.html'
 
-
+@method_decorator(login_required,name='dispatch')
 class CategoryUpdateView(UpdateView):
     model = Category
     fields = '__all__'
-    success_url = '/staff/list-category'
+    success_url = '/staff'
     template_name = 'staff/category/form.html'
 
-
+@login_required
 def deleteCategory(request, pk):
     c = Category.objects.get(pk=pk)
     c.delete()
-    return redirect('list-category')
+    return redirect('/staff')
 
 # Product
 
-
+@login_required
 def listProduct(request):
     page = request.GET.get('page', '')
     page = int(page) if page.isdigit() else 1
@@ -69,29 +69,29 @@ def listProduct(request):
     }
     return render(request, 'staff/product/list.html', context)
 
-
+@method_decorator(login_required,name='dispatch')
 class ProductCreateView(CreateView):
     model = Product
     fields = '__all__'
     success_url = '/staff/list-product'
     template_name = 'staff/product/form.html'
 
-
+@method_decorator(login_required,name='dispatch')
 class ProductUpdateView(UpdateView):
     model = Product
     fields = '__all__'
     success_url = '/staff/list-product'
     template_name = 'staff/product/form.html'
 
-
+@login_required
 def deleteProduct(request, pk):
-    c = Product.objects.get(pk=pk)
-    c.delete()
+    p = Product.objects.get(pk=pk)
+    p.delete()
     return redirect('list-product')
 
 # Order
 
-
+@login_required
 def listOrder(request):
     page = request.GET.get('page', '')
     page = int(page) if page.isdigit() else 1
@@ -110,11 +110,13 @@ def listOrder(request):
     }
     return render(request, 'staff/order/list.html', context)
 
+@login_required
 def viewOrder(request, pk):
     order = Order.objects.get(pk=pk)
     context = {'order': order}
     return render(request, 'staff/order/detail.html', context)
 
+@login_required
 def confirmOrderDeliver(request, pk):
     order = Order.objects.get(pk=pk)
     order.status = Order.Status.DELIVERD
@@ -122,14 +124,20 @@ def confirmOrderDeliver(request, pk):
     order.save()
     return redirect('list-order')
 
+@login_required
 def cancelOrder(request, pk):
     order = Order.objects.get(pk=pk)
     order.status = Order.Status.CANCELED
     order.save()
     return redirect('list-order')
 
+@login_required
+def deleteOrder(request,pk):
+    order=Order.objects.get(pk=pk)
+    order.delete()
+    return redirect('list-order')
 # CONTACT
-
+@login_required
 def listContact(request):
     page = request.GET.get('page', '')
     page = int(page) if page.isdigit() else 1
@@ -149,6 +157,7 @@ def listContact(request):
     }
     return render(request, 'staff/contact/list.html', context)
 
+@login_required
 def viewContact(request,pk):
     contact=Contact.objects.get(pk=pk)
     context={

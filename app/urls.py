@@ -10,4 +10,6 @@ urlpatterns = [
     path('order-product/<pk>',orderProduct,name='order-product'),
     path('lien-he',ContactView,name='lien-he'),
     path('thank-you',ThankYou,name='thank-you'),
+    path('thank-you1',ThankYou1,name='thank-you1'),
+    
 ]

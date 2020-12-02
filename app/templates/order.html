@@ -72,11 +72,6 @@
 <script>
     $(document).ready(function () {
         $('.table input').addClass('form-control');
-        $('#id_qty').change(function(){
-            //alert($(this).val());
-            var total=$(this).val() * '{{product.price}}';
-            $('#total').html(total);
-        });
     });
 </script>
 {% endblock %}
