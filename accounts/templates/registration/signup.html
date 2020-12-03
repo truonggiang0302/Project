@@ -29,15 +29,27 @@
     <form method="POST">{%csrf_token%}
       <div class="form-group">
         <label>Tên tài khoản</label>
-        <input name="username" type="text" class="form-control" />
+        <input name="username" type="text" class="form-control" />{{form.username.errors}}
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input name="email" type="text" class="form-control" />{{form.email.errors}}
+      </div>
+      <div class="form-group">
+        <label>Tên</label>
+        <input name="first_name" type="text" class="form-control" />{{form.first_name.errors}}
+      </div>
+      <div class="form-group">
+        <label>Họ</label>
+        <input name="last_name" type="text" class="form-control" />{{form.last_name.errors}}
       </div>
       <div class="form-group">
         <label>Mật khẩu</label>
-        <input name="password1" type="password" class="form-control" />
+        <input name="password1" type="password" class="form-control" />{{ form.password1.errors }}
       </div>
       <div class="form-group">
         <label>Mật khẩu xác thực</label>
-        <input name="password2" type="password" class="form-control" />
+        <input name="password2" type="password" class="form-control" />{{ form.password2.errors }}
       </div>
       <div class="form-group">
         <span id="error" style="color:red"></span>
