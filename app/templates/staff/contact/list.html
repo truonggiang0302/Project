@@ -20,7 +20,7 @@
         <tbody>
             {% for c in contactList %}
             <tr>
-                <td>{{forloop.counter}}</td>
+                <td>{{forloop.counter|add:start}}</td>
                 <td>{{c.customer_name}}</td>
                 <td>{{c.customer_phone}}</td>
                 <td>{{c.contact_date|date:"d/m/yy h:i:s"}}</td>

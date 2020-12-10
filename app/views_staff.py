@@ -102,7 +102,7 @@ def listOrder(request):
     total = orderList.count()
     numpage = math.ceil(total/PAGE_SIZE)
     context = {
-        'orderList': orderList,
+        'orderList': orderList[start:end],
         'page': page,
         'start': start,
         'end': end,
