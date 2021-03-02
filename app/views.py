@@ -4,11 +4,15 @@ from django.conf import settings
 import math
 from .forms import *
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 #Trang chủ
 def index(request):
     return render(request,'index.html')
+@login_required
+def index1(request):
+    return render(request,'index1.html')
 
 priceList = [
     {'id': 1, 'name': 'Dưới 100 triệu', 'max': 100},
@@ -20,7 +24,8 @@ priceList = [
 ccList = [
     {'id': 1, 'name': 'Dưới 300cc', 'max': 300},
     {'id': 2, 'name': '300cc --> 600cc', 'min': 300, 'max': 600},
-    {'id': 3, 'name': 'Trên 1000cc', 'min': 1000},
+    {'id':3,'name':'600cc --> 1000cc','min':600,'max':1000},
+    {'id': 4, 'name': 'Trên 1000cc', 'min': 1000},
 ]
 #Tìm kiếm
 def searchProduct(request):
@@ -104,6 +109,7 @@ def viewProductDetail(request, pk):
     return render(request, 'view_detail_product.html', context)
 
 #Mua sản phẩm
+@login_required
 def orderProduct(request, pk):
     product = Product.objects.get(pk=pk)
     form = OrderForm(initial={'qty': 1})
@@ -130,6 +136,7 @@ def ThankYou(request):
     return render(request,'thank_you.html')
 
 #Liên hệ
+@login_required
 def ContactView(request):
     form = ContactForm()
     if request.method == 'POST':

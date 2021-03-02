@@ -18,6 +18,6 @@ def signUp(request):
                                 first_name=user.first_name,
                                 last_name=user.last_name)
             login(request, user)
-            return redirect('/staff')
+            return redirect('/login')
 
     return render(request, 'registration/signup.html', {'form':  form})

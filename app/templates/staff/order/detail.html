@@ -57,7 +57,8 @@
             <td>
                 {% if order.status == 0 %} Mới {% endif %}
                 {% if order.status == 1 %} Đã giao hàng {% endif %}
-                {% if order.status == 2 %} Đã hủy {% endif %}
+                {% if order.status == 2 %} Đã nhận hàng {% endif %}
+                {% if order.status == 3 %} Đã hủy {% endif %}
             </td>
         </tr>
     </table>
@@ -70,8 +71,12 @@
             Hủy đơn hàng
         </a>
         {% endif %}
-        {% if order.status == 2 %}
-        <a class="btn btn-danger" href="javascript:deleteOrder({{order.id}})">Xóa đơn</a>
+        {% if order.status == 1 %}
+        <a class="btn btn-primary mr-1" href="javascript:confirmOrderReceive({{ order.id }})">Xác nhận đã nhận hàng</a>
+        <a class="btn btn-danger mr-1" href="javascript:cancelOrder({{ order.id }})">Hủy đơn hàng</a>
+        {% endif %}
+        {% if order.status == 3 %}
+        <a class="btn btn-danger" href="javascript:deleteOrder({{order.id}})">Xóa đơn hàng</a>
         {% endif %}
         <a class="btn btn-primary" href="/staff/list-order">Quay lại</a>
     </div>
@@ -90,6 +95,11 @@
     function deleteOrder(id) {
         if (confirm('Xóa đơn hàng này !')) {
             location.href = ('/staff/delete-order/' + id);
+        }
+    }
+    function confirmOrderReceive(id){
+        if(confirm('Xác nhận đã nhận được hàng !')){
+            location.href=('/staff/confirm-order-receive/'+id);
         }
     }
 </script>

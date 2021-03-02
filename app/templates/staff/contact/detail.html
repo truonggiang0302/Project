@@ -35,6 +35,14 @@
             <td>{{contact.contact_date|date:'d/m/yy h:i:s'}}</td>
         </tr>
     </table>
+    <a class="btn btn-danger mr-1" href="javascript:deleteContact({{ contact.id }})">Xóa</a>
     <a class="btn btn-primary" href="/staff/list-contact">Quay lại</a>
 </div>
+<script>
+function deleteContact(id){
+    if(confirm('Xác nhận xóa liên hệ này !')){
+        location.href=('/staff/delete-contact/'+id);
+    }
+}
+</script>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "./base.html" %}
+{% extends "./base1.html" %}
 
 {% block menu %}
   {% with tab=3 %}
@@ -72,8 +72,8 @@
               </select></td>
             <td><label class="label">Phân khối :</label></td>
             <td><select name='ccId' class="form-control">
-                {% for cc in ccList %}
                 <option value="">--Chọn phân khối--</option>
+                {% for cc in ccList %}
                 <option {%if cc.id == ccId%}selected{%endif%} value="{{cc.id}}">{{cc.name}}</option>
                 {% endfor %}
               </select></td>

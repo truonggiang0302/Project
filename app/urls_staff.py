@@ -15,9 +15,11 @@ urlpatterns=[
     path('list-order',listOrder,name='list-order'),
     path('view-order/<pk>',viewOrder,name='view-order'),
     path('confirm-order-deliver/<pk>',confirmOrderDeliver),
+    path('confirm-order-receive/<pk>',confirmOrderReceive),
     path('cancel-order/<pk>',cancelOrder),
     path('delete-order/<pk>',deleteOrder,name='delete-order'),
 
     path('list-contact',listContact,name='list-contact'),
     path('view-contact/<pk>',viewContact,name='view-contact'),
+    path('delete-contact/<pk>',deleteContact,name='delete-contact'),
 ]

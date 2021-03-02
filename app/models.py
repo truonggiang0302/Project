@@ -26,7 +26,8 @@ class Order(models.Model):
     class Status:
         NEW=0
         DELIVERD=1
-        CANCELED=2
+        RECEIVED=2
+        CANCELED=3
     product=models.ForeignKey(Product,on_delete=models.PROTECT)
     qty=models.IntegerField(verbose_name='Số lượng')
     customer_name=models.CharField(max_length=50)

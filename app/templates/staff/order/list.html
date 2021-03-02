@@ -30,9 +30,10 @@
         <td>{{o.customer_phone}}</td>
         <td>{{o.order_date|date:"d/m/yy h:i:s"}}</td>
         <td>
-          {% if o.status == 0 %} NEW {% endif %}
-          {% if o.status == 1 %} DELIVERED {% endif %}
-          {% if o.status == 2 %} CANCELED {% endif %}
+            {% if o.status == 1 %} DELIVERED {% endif %}
+            {% if o.status == 2 %} RECEIVED {% endif %}
+            {% if o.status == 0 %} NEW {% endif %}
+            {% if o.status == 3 %} CANCELED {% endif %}
         </td>
         <td>
           <a title="Xem" href="{% url 'view-order' o.id %}"><i class="fa fa-eye">Xem</i></a>

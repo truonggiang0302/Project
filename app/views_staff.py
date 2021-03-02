@@ -125,6 +125,13 @@ def confirmOrderDeliver(request, pk):
     return redirect('list-order')
 
 @login_required
+def confirmOrderReceive(request,pk):
+    order=Order.objects.get(pk=pk)
+    order.status=Order.Status.RECEIVED
+    order.deliver_date=datetime.now()
+    order.save()
+    return redirect('list-order')
+@login_required
 def cancelOrder(request, pk):
     order = Order.objects.get(pk=pk)
     order.status = Order.Status.CANCELED
@@ -164,3 +171,9 @@ def viewContact(request,pk):
         'contact':contact
     }
     return render(request,'staff/contact/detail.html',context)
+
+@login_required
+def deleteContact(request,pk):
+    contact=Contact.objects.get(pk=pk)
+    contact.delete()
+    return redirect('list-contact')
