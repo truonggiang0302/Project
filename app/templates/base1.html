@@ -1,16 +1,17 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
     .logo img {
         width: 130px;
         margin-left: 230px;
     }
-
 
 
     input.form-control {
@@ -31,7 +32,8 @@
         margin-top: -60px;
         margin-right: 200px;
     }
-    .info{
+
+    .info {
         margin-left: 1350px;
         margin-top: -130px;
     }
@@ -158,8 +160,7 @@
     .footer-distributed .footer-center p a {
         color: lightseagreen;
         text-decoration: none;
-        font-size: 18px;
-        ;
+        font-size: 18px;;
     }
 
     .footer-distributed .footer-links a:before {
@@ -214,7 +215,6 @@
         text-align: center;
         margin-top: -10px;
         padding: 10px;
-
 
 
     }
@@ -298,7 +298,7 @@
 </style>
 
 <body>
-    {% block menu %}
+{% block menu %}
     <div class="flex-wrapper">
 
         <!--Header-->
@@ -306,7 +306,7 @@
             <div class="row bg-dark mr-0">
                 <div class="col-xs-12 col-sm-12 col-md-4 pt-3">
                     <div class="logo">
-                        <a href="/login"><img src="/static/images/logo_pkl.png" alt="logo"></a>
+                        <a href="/"><img src="/static/images/logo_pkl.png" alt="logo"></a>
                     </div>
                 </div>
                 <div>
@@ -321,40 +321,43 @@
                     <div class="search">
                         <form action="/search" class="form-inline md-form form-sm float-right">
                             <input class="form-control form-control-sm ml-3 w-35 p-3 " type="text"
-                                    name="name" value="{{name}}" placeholder="Nhập từ khóa tìm kiếm"
-                                    aria-label="Search">
-                            <button class="fas fa-search" style="height:36px" type="submit"></button></a>
+                                   name="name" value="{{ name }}" placeholder="Nhập từ khóa tìm kiếm"
+                                   aria-label="Search">
+                            <button class="fas fa-search" style="height:36px" type="submit"></button>
+                            </a>
                         </form>
                     </div>
                 </div>
-                <div class="info">
+                <div class="info pt-3">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img class="rounded-circle" style="width:50px"
-                                src="https://raw.githubusercontent.com/pytutorial/html_samples/master/css_bootstrap/user.svg">
-                            <a style="color: white">Xin chào {{user.username}}</a>
-                            </a><br/>
-                    <a href="/accounts/logout">Đăng xuất</a>
+                        <img class="rounded-circle" style="width:40px;margin-top: -10px"
+                             src="https://raw.githubusercontent.com/pytutorial/html_samples/master/css_bootstrap/user.svg">
+                        <a style="color: white">Xin chào {{ user.username }}</a>
+                    </a>
 
-                            <!--<div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">
-                                  Thông tin tài khoản
-                                </a>
-                                <a class="dropdown-item" href="/accounts/logout">
-                                  Đăng xuất
-                                </a>
-      </div>-->
+                    <div class="dropdown-menu p-0">
+                        <a class="dropdown-item" href="#">
+                            Thông tin tài khoản
+                        </a>
+
+                        <a class="dropdown-item" href="/accounts/logout">
+                            Đăng xuất
+                        </a>
+                    </div>
 
                 </div>
             </div>
             <div class="menu">
                 <nav class="navbar navbar-expand-lg p-0 justify-content-center bg-dark navbar-dark sticky-top">
                     <div class="navbar-nav m-1 font-weight-bold text-light ">
-                        <a class="nav-item nav-link px-3 {%if page == 1%} active {%endif%}" href="/login">TRANG CHỦ</a>
-                        <a class="nav-item nav-link px-3 {%if page == 2%} active {%endif%}" href="/gioi-thieu">GIỚI THIỆU</a>
+                        <a class="nav-item nav-link px-3 {% if page == 1 %} active {% endif %}" href="/">TRANG CHỦ</a>
+                        <a class="nav-item nav-link px-3 {% if page == 2 %} active {% endif %}" href="/gioi-thieu">GIỚI
+                            THIỆU</a>
                         <div class="dropdown show">
-                            <a class="nav-item nav-link px-3 dropdown-toggle {%if tab == 3%} active {%endif%}" href="#"
-                                role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">HÃNG SẢN PHẨM</a>
+                            <a class="nav-item nav-link px-3 dropdown-toggle {% if tab == 3 %} active {% endif %}"
+                               href="#"
+                               role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">HÃNG SẢN PHẨM</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="/all-product">TẤT CẢ</a>
                                 <a class="dropdown-item" href="/all-product?categoryId=1">HONDA</a>
@@ -367,8 +370,9 @@
                                 <a class="dropdown-item" href="#">HÃNG KHÁC</a>
                             </div>
                         </div>
-                        <a class="nav-item nav-link px-3 {%if page == 4%} active {%endif%}" href="#">TIN TỨC</a>
-                        <a class="nav-item nav-link px-3 {%if page == 5%} active {%endif%}" href="/lien-he">LIÊN HỆ</a>
+                        <a class="nav-item nav-link px-3 {% if page == 4 %} active {% endif %}" href="#">TIN TỨC</a>
+                        <a class="nav-item nav-link px-3 {% if page == 5 %} active {% endif %}" href="/lien-he">LIÊN
+                            HỆ</a>
                     </div>
                 </nav>
             </div>
@@ -409,9 +413,9 @@
                         <div>
 
                             <svg width="1em" height="2em" viewBox="0 0 16 16" class="bi bi-cursor-fill"
-                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
-                                    d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
+                                      d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
                             </svg>
                             <p><span>Minh Khai, Bắc Từ Liêm, Hà Nội</p>
                         </div>
@@ -419,9 +423,9 @@
                         <div>
                             <br>
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-telephone-fill"
-                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
-                                    d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z" />
+                                      d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z"/>
                             </svg>
                             <p>0123456789</p>
                         </div>
@@ -429,9 +433,9 @@
                         <div>
                             <br>
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope-fill"
-                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
-                                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
+                                      d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
                             </svg>
                             <p><a href="mailto:support@company.com">support@pkl.com</a></p>
                         </div>
@@ -461,5 +465,5 @@
             </div>
         </div>
     </div>
-    {% endblock %}
+{% endblock %}
 </body>
