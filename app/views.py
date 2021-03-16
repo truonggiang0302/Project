@@ -5,14 +5,19 @@ import math
 from .forms import *
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 
-#Trang chủ
+# Trang chủ
 def index(request):
-    return render(request,'index.html')
+    return render(request, 'index.html')
+
+
 @login_required
 def index1(request):
-    return render(request,'index1.html')
+    return render(request, 'index1.html')
+
 
 priceList = [
     {'id': 1, 'name': 'Dưới 100 triệu', 'max': 100},
@@ -24,50 +29,58 @@ priceList = [
 ccList = [
     {'id': 1, 'name': 'Dưới 300cc', 'max': 300},
     {'id': 2, 'name': '300cc --> 600cc', 'min': 300, 'max': 600},
-    {'id':3,'name':'600cc --> 1000cc','min':600,'max':1000},
+    {'id': 3, 'name': '600cc --> 1000cc', 'min': 600, 'max': 1000},
     {'id': 4, 'name': 'Trên 1000cc', 'min': 1000},
 ]
-#Tìm kiếm
+
+
+# Tìm kiếm
 def searchProduct(request):
-    name=request.GET.get('name','')
-    productList=Product.objects.filter(name__icontains=name)
+    name = request.GET.get('name', '')
+    productList = Product.objects.filter(name__icontains=name)
     page = request.GET.get('page', '')
     page = int(page) if page.isdigit() else 1
     pageSize = settings.PAGE_SIZE
-    start = (page-1)*pageSize
+    start = (page - 1) * pageSize
     end = start + pageSize
     total = productList.count()
-    num_page = math.ceil(total/pageSize)
-    context={
-        'productList':productList[start:end],
-        'name':name,
+    num_page = math.ceil(total / pageSize)
+    context = {
+        'productList': productList[start:end],
+        'name': name,
         'start': start,
         'end': end,
         'num_page': num_page,
         'page': page,
-        }
-    return render(request,'search.html',context)
+    }
+    return render(request, 'search.html', context)
 
-#Giới thiệu
+
+# Giới thiệu
 def Introduce(request):
-    return render(request,'introduce.html')
+    return render(request, 'introduce.html')
 
-#Xem sản phẩm
+
+# Xem sản phẩm
 def ViewAllProduct(request):
     page = request.GET.get('page', '')
     page = int(page) if page.isdigit() else 1
     pageSize = settings.PAGE_SIZE
-    start = (page-1)*pageSize
+    start = (page - 1) * pageSize
     end = start + pageSize
     productList = Product.objects.all()
-    categoryId = request.GET.get('categoryId','')
+    productId = request.GET.get('productId', '')
+    if productId:
+        productId = int(productId)
+        productList = productList.filter(product__id=productId)
+    categoryId = request.GET.get('categoryId', '')
     if categoryId:
         categoryId = int(categoryId)
         productList = productList.filter(category__id=categoryId)
     categoryList = Category.objects.all()
     priceId = request.GET.get('priceId')
     priceId = int(priceId) if priceId else None
-    price = priceList[priceId-1] if priceId else {}
+    price = priceList[priceId - 1] if priceId else {}
     minPrice, maxPrice = price.get('min'), price.get('max')
     if minPrice:
         productList = productList.filter(price__gte=minPrice)
@@ -77,7 +90,7 @@ def ViewAllProduct(request):
 
     ccId = request.GET.get('ccId')
     ccId = int(ccId) if ccId else None
-    cc = ccList[ccId-1] if ccId else {}
+    cc = ccList[ccId - 1] if ccId else {}
     minCC = cc.get('min')
     maxCC = cc.get('max')
     if minCC:
@@ -85,8 +98,8 @@ def ViewAllProduct(request):
     if maxCC:
         productList = productList.filter(cc__lte=maxCC)
     total = productList.count()
-    num_page = math.ceil(total/pageSize)
-    #Context
+    num_page = math.ceil(total / pageSize)
+    # Context
     context = {
         'productList': productList[start:end],
         'start': start,
@@ -94,21 +107,24 @@ def ViewAllProduct(request):
         'num_page': num_page,
         'page': page,
         'priceList': priceList,
-        'ccList':ccList,
+        'ccList': ccList,
         'categoryList': categoryList,
         'categoryId': categoryId,
         'priceId': priceId,
-        'ccId':ccId,
+        'ccId': ccId,
+        'productId': productId,
     }
     return render(request, 'view_all_product.html', context)
 
-#Xem chi tiết sản phẩm
+
+# Xem chi tiết sản phẩm
 def viewProductDetail(request, pk):
     product = Product.objects.get(pk=pk)
     context = {'product': product}
     return render(request, 'view_detail_product.html', context)
 
-#Mua sản phẩm
+
+# Mua sản phẩm
 @login_required
 def orderProduct(request, pk):
     product = Product.objects.get(pk=pk)
@@ -131,11 +147,13 @@ def orderProduct(request, pk):
     context = {'form': form, 'product': product}
     return render(request, 'order.html', context)
 
-#Cảm ơn
-def ThankYou(request):
-    return render(request,'thank_you.html')
 
-#Liên hệ
+# Cảm ơn
+def ThankYou(request):
+    return render(request, 'thank_you.html')
+
+
+# Liên hệ
 @login_required
 def ContactView(request):
     form = ContactForm()
@@ -148,13 +166,32 @@ def ContactView(request):
             contact.customer_name = data['customer_name']
             contact.customer_email = data['customer_email']
             contact.customer_phone = data['customer_phone']
-            contact.customer_content=data['customer_content']
+            contact.customer_content = data['customer_content']
             contact.contact_date = datetime.now()
             contact.save()
             return redirect('/thank-you1')
     context = {'form': form}
     return render(request, 'contact.html', context)
 
-#thankyou1
+
+# thankyou1
 def ThankYou1(request):
-    return render(request,'thank_you1.html')
+    return render(request, 'thank_you1.html')
+
+
+# tin tức
+def NewsView(request):
+    newsList = News.objects.all()
+    context = {
+        'newList': newsList
+    }
+    return render(request, 'news.html', context)
+
+
+# Xem chi tiết tin tức
+def NewsDetailView(request, pk):
+    newsList = News.objects.get(pk=pk)
+    context = {
+        'newsList': newsList
+    }
+    return render(request, 'news_detail.html', context)

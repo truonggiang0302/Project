@@ -2,7 +2,8 @@ from django.urls import path
 from .views_staff import *
 
 urlpatterns=[
-    path('',listCategory,name='staff-home'),
+    path('',dashboard,name='staff-home'),
+    path('list-category',listCategory,name='list-category'),
     path('create-category',CategoryCreateView.as_view(),name='create-category'),
     path('update-category/<pk>',CategoryUpdateView.as_view(),name='update-category'),
     path('delete-category/<pk>',deleteCategory,name='delete-category'),
@@ -22,4 +23,9 @@ urlpatterns=[
     path('list-contact',listContact,name='list-contact'),
     path('view-contact/<pk>',viewContact,name='view-contact'),
     path('delete-contact/<pk>',deleteContact,name='delete-contact'),
+
+    path('list-news',listNews,name='list-news'),
+    path('update-news/<pk>',NewsUpdateView.as_view(),name='update-news'),
+    path('delete-news/<pk>',deleteNews,name='delete-news'),
+    path('create-news',NewsCreateView.as_view(),name='create-news')
 ]

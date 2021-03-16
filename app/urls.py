@@ -12,5 +12,6 @@ urlpatterns = [
     path('lien-he',ContactView,name='lien-he'),
     path('thank-you',ThankYou,name='thank-you'),
     path('thank-you1',ThankYou1,name='thank-you1'),
-    
+    path('tin-tuc',NewsView,name='news'),
+    path('tin-tuc/<pk>',NewsDetailView,name='newsdetail'),
 ]

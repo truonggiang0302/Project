@@ -2,23 +2,24 @@
 
 {% block menu %}
     {% with page=3 %}
-    {{block.super}}
-  {% endwith %}
+        {{ block.super }}
+    {% endwith %}
 {% endblock %}
 
 {% block content %}
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<header>
-    <title>BUY</title>
-</header>
-<div class="container mt-3">
-    <h3 style="text-transform: uppercase;font-weight: bold;color: blue;text-align: center;">Đặt mua hàng trực tuyến</h3>
-    <form method="POST">{%csrf_token%}
-        <table class="table">
-            <tbody>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <header>
+        <title>BUY</title>
+    </header>
+    <div class="container mt-3">
+        <h3 style="text-transform: uppercase;font-weight: bold;color: blue;text-align: center;">Đặt mua hàng trực
+            tuyến</h3>
+        <form method="POST">{% csrf_token %}
+            <table class="table">
+                <tbody>
                 <tr>
                     <td colspan="2">
                         <h4 style="text-transform: uppercase;font-weight: bold;">Thông tin xe</h4>
@@ -26,23 +27,27 @@
                 </tr>
                 <tr>
                     <th>Tên sản phẩm</th>
-                    <td>{{product.name}}</td>
+                    <td>{{ product.name }}</td>
                 </tr>
                 <tr>
                     <th>Màu sắc</th>
-                    <td>{{product.color}}</td>
+                    <td>{{ product.color }}</td>
                 </tr>
                 <tr>
                     <th>Đơn giá</th>
-                    <td>{{product.price|floatformat:"0"}} triệu đồng</td>
+                    <td>{{ product.price|floatformat:"0" }} triệu đồng</td>
                 </tr>
                 <tr>
                     <th>Số lượng</th>
                     <td>
                         <div style="width: 10px;text-align: center;">
-                            {{form.qty}} {{form.qty.errors}}
+                            {{ form.qty }} {{ form.qty.errors }}
                         </div>
                     </td>
+                </tr>
+                <tr>
+                    <th>Tổng tiền:</th>
+                    <td><span id='total'>{{ product.price|floatformat:"0" }}</span> triệu đồng</td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -51,27 +56,34 @@
                 </tr>
                 <tr>
                     <th>Họ và tên</th>
-                    <td>{{form.customer_name}} {{form.customer_name.errors}}</td>
+                    <td>{{ form.customer_name }} {{ form.customer_name.errors }}</td>
                 </tr>
                 <tr>
                     <th>Số điện thoại</th>
-                    <td>{{form.customer_phone}} {{form.customer_phone.errors}}</td>
+                    <td>{{ form.customer_phone }} {{ form.customer_phone.errors }}</td>
                 </tr>
                 <tr>
                     <th>Địa chỉ</th>
-                    <td>{{form.customer_address}} {{form.customer_address.errors}}</td>
+                    <td>{{ form.customer_address }} {{ form.customer_address.errors }}</td>
                 </tr>
-            </tbody>
-        </table>
-        <a class="btn btn-secondary" href="{% url 'detail-product' product.id %}">Quay lại</a>
-        <button class="btn btn-primary" type="submit">Đặt mua</button>
-    </form>
+                </tbody>
+            </table>
+            <a class="btn btn-secondary" href="{% url 'detail-product' product.id %}">Quay lại</a>
+            <button class="btn btn-primary" type="submit">Đặt mua</button>
+        </form>
 
-</div>
+    </div>
 
-<script>
-    $(document).ready(function () {
-        $('.table input').addClass('form-control');
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            $('.table input').addClass('form-control');
+            $('#id_qty').change(function () {
+                var total = $(this).val() * '{{product.price}}';
+                $('#total').html(total);
+            });
+        });
+        function Qty(){
+            alert('Quá số lượng có trong ShowRoom');
+        }
+    </script>
 {% endblock %}

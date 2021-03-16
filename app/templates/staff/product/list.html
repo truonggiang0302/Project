@@ -1,58 +1,61 @@
-{% extends "../base_staff.html" %}
+{% extends 'staff/base/base_staff.html' %}
 
-{% block menu %} 
-  {% with page=2 %}
-    {{block.super}}
-  {% endwith %}
+{% block menu %}
+    {% with page=2 %}
+        {{ block.super }}
+    {% endwith %}
 {% endblock %}
 
 {% block content %}
-<div class="container pt-3">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>STT</th>
-          <th>Mã</th>
-          <th>Tên</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for p in productList %}
-          <tr>
-            <td>{{forloop.counter|add:start}}</td>
-            <td>{{p.code}}</td>
-            <td>{{p.name}}</td>
-            <td>
-              <a href='{% url "update-product" p.id %}' 
-                class="btn btn-sm btn-primary">Chỉnh sửa</a>
-                
-              <a href='javascript:deleteProduct({{p.id}})' 
-                 class="btn btn-sm btn-danger">Xóa</a>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" href='/staff/list-product?page=1'>&laquo;</a></li>
-      
-      <li class="page-item"><a class="page-link" 
-        {% if page > 1 %} href='/staff/list-product?page={{page|add:-1}}' {% endif %}>&lsaquo;</a></li>
-  
-      <li class="page-item"><a class="page-link" 
-        {% if page < numpage %} href='/staff/list-product?page={{page|add:1}}' {% endif %}>&rsaquo;</a></li>
-  
-      <li class="page-item"><a class="page-link" href='/staff/list-product?page={{numpage}}'>&raquo;</a></li>
-    </ul> 
-    <a href='/staff/create-product'
-       class="btn btn-primary">Thêm dòng xe</a>
-  </div>
-  <script>
-    function deleteProduct(id) {
-      if(confirm('Bạn có chắc chắn muốn xóa?')){
-        location.href = '/staff/delete-product/' + id;
-      }
-    }
-  </script>
+    <div class="container pt-3">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Số lượng</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in productList %}
+                <tr>
+                    <td>{{ forloop.counter|add:start }}</td>
+                    <td>{{ p.code }}</td>
+                    <td>{{ p.name }}</td>
+                    <td>{{ p.qty }}</td>
+                    <td>
+                        <a href='{% url "update-product" p.id %}'
+                           class="btn btn-sm btn-primary">Chỉnh sửa</a>
+
+                        <a href='javascript:deleteProduct({{ p.id }})'
+                           class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href='/staff/list-product?page=1'>&laquo;</a></li>
+
+            <li class="page-item"><a class="page-link"
+                    {% if page > 1 %} href='/staff/list-product?page={{ page|add:-1 }}' {% endif %}>&lsaquo;</a></li>
+
+            <li class="page-item"><a class="page-link"
+                    {% if page < numpage %} href='/staff/list-product?page={{ page|add:1 }}' {% endif %}>&rsaquo;</a>
+            </li>
+
+            <li class="page-item"><a class="page-link" href='/staff/list-product?page={{ numpage }}'>&raquo;</a></li>
+        </ul>
+        <a href='/staff/create-product'
+           class="btn btn-primary">Thêm dòng xe</a>
+    </div>
+    <script>
+        function deleteProduct(id) {
+            if (confirm('Bạn có chắc chắn muốn xóa?')) {
+                location.href = '/staff/delete-product/' + id;
+            }
+        }
+    </script>
 {% endblock %}

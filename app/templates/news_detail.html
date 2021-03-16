@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends './base1.html' %}
+{% block menu %}
+    {% with page=4 %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Tin tức</title>
+    </head>
+    <style>
+        .image img {
+            width: 1000px;
+            height: 733px;
+        }
+
+        .title {
+            text-transform: capitalize;
+        }
+
+        .rating i {
+            font-size: 13px;
+        }
+
+    </style>
+    <body>
+    <div class="container">
+        <div class="title pt-3 text-center">
+            <p>
+            <h1>{{ newsList.title }}</h1></p>
+            <hr style="border: 1px solid;color: black;max-width: 200px">
+        </div>
+        <div class="rating text-center">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="details text-center font-italic">
+            <span>Tác giả:Admin || Đăng ngày:{{ newsList.news_date|date:'d-m-Y' }} </span>
+        </div>
+
+        <div class="image pt-3">
+            <p><img src="/{{ newsList.image }}"></p>
+        </div>
+        <div class="content-news">
+            <p>Hót...hót...siêu hót</p>
+            <p>Trường Giang Motor giảm giá từ 1 tới 3 triệu tất cả các dòng xe moto pkl cũ lướt CBR150, CBR150R, R15 v2 v3,
+                Suzuki GSX R150, Suzuki GSX S150, GPX Legend, GPX Gentleman, Benelli, Kawasaki, Phoenix,... Anh em qua
+                trực tiếp cửa hàng số 152 Phạm Văn Đồng để chọn xe xuống phố mừng ngày giải phóng đất nước 30 -4 nhé anh
+                em!</p>
+            <p>{{ newsList.content }}</p>
+            <p>ĐẶC BIỆT:  tặng bạn bảo dưỡng miễn phí trọn vẹn ko giới hạn km tại Trường Giang Motor.</p>
+            <p>TRƯỜNG GIANG MOTOR</p>
+            <p>- Địa chỉ uy tín nhất MB về Mua Bán Trao Đổi Các Loại Xe Thể Thao, Xe Côn Tay Chất Lượng chạy lướt</p>
+            <p>- Bảo hành máy và IC 1,5 năm.</p>
+            <p>- Giá xe tốt nhất, cạnh tranh nhất.</p>
+            <p>- Thủ tục mua bán nhanh gọn, bảo hành an ninh, tai nạn, hỗ trợ sang tên đổi chủ.</p>
+            <p>- Mạnh Motor cam kết máy móc zin nguyên bản</p>
+            <p>Anh em vui lòng goi : 0978.968.486 hoặc  0939.331.388</p>
+            <p>- CS1: 152 Phạm Văn Đồng,Mai Dịch,Cầu Giấy,HN</p>
+            <p>-  CS2: Lô CC5-06, KĐT thành phố Giao Lưu, Phạm Văn Đồng, Hà Nội</p>
+            <p>❤ Trường Giang motor hân hạnh phục vụ bạn❤</p>
+            <p></p>
+        </div>
+    </div>
+    </body>
+{% endblock %}
+</html>

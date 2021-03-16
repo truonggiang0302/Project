@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 # Create your models here.
 class Category(models.Model):
     code = models.CharField(max_length=30, verbose_name='Mã', unique=True)
@@ -19,6 +19,7 @@ class Product(models.Model):
     image = models.ImageField(verbose_name='Ảnh', upload_to='static/images')
     year=models.CharField(max_length=10,verbose_name='Năm sản xuất')
     origin=models.CharField(max_length=100,verbose_name='Xuất xứ')
+    qty=models.IntegerField(verbose_name='Số lượng',default=1)
     def __str__(self):
         return self.name
     
@@ -39,6 +40,10 @@ class Order(models.Model):
     def __str__(self):
         return self.product.name
 
+    @property
+    def total(self):
+        return self.qty * self.product.price
+
 class Contact(models.Model):
     customer_name=models.CharField(max_length=50,default='')
     customer_email=models.CharField(max_length=100,default='')
@@ -47,3 +52,12 @@ class Contact(models.Model):
     contact_date=models.DateTimeField()
     def __str__(self):
         return self.customer_name
+
+class News(models.Model):
+    title=models.CharField(max_length=500,verbose_name='Tiêu đề')
+    image=models.ImageField(verbose_name='Ảnh',upload_to='static/images_news')
+    content=models.TextField(verbose_name='Nội dung')
+    content_sumarize=models.CharField(max_length=500,verbose_name='Tóm tắt tiêu đề',default='')
+    news_date=models.DateTimeField(default=datetime.now,blank=True)
+    def __str__(self):
+        return  self.title

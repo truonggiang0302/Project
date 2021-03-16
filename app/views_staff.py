@@ -10,6 +10,21 @@ from django.contrib.auth.decorators import login_required
 
 PAGE_SIZE = 5
 
+@login_required
+def dashboard(request):
+    total_category = Category.objects.count()
+    total_product = Product.objects.count()
+    total_contact = Contact.objects.count()
+    total_order = Order.objects.count()
+    orders = Order.objects.all().order_by('-id')
+    context = {
+        'product': total_product,
+        'category': total_category,
+        'contact': total_contact,
+        'order': total_order,
+        'orders': orders
+    }
+    return render(request, 'staff/dashboard/dashboard.html', context)
 # Category
 @login_required
 def listCategory(request):
@@ -177,3 +192,33 @@ def deleteContact(request,pk):
     contact=Contact.objects.get(pk=pk)
     contact.delete()
     return redirect('list-contact')
+
+
+#NEWS
+@login_required
+def listNews(request):
+    newsList=News.objects.all()
+    newsList=newsList.order_by('-news_date')
+    context={
+        'newsList':newsList
+    }
+    return render(request,'staff/news/list.html',context)
+
+@method_decorator(login_required,name='dispatch')
+class NewsUpdateView(UpdateView):
+    model = News
+    fields = '__all__'
+    success_url = '/staff/list-news'
+    template_name = 'staff/news/form.html'
+@login_required
+def deleteNews(request,pk):
+    news=News.objects.get(pk=pk)
+    news.delete()
+    return redirect('list-news')
+
+@method_decorator(login_required,name='dispatch')
+class NewsCreateView(CreateView):
+    model = News
+    fields = '__all__'
+    success_url = '/staff/list-news'
+    template_name = 'staff/news/form.html'
