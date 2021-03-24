@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-
+PAGE_SIZE = 5
 # Trang chủ
 def index(request):
     return render(request, 'index.html')
@@ -128,12 +128,11 @@ def viewProductDetail(request, pk):
 @login_required
 def orderProduct(request, pk):
     product = Product.objects.get(pk=pk)
-    form = OrderForm(initial={'qty': 1})
+    form = OrderForm(initial={'productId':pk})
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            print('data', data)
             order = Order()
             order.product = product
             order.qty = data['qty']
@@ -181,9 +180,19 @@ def ThankYou1(request):
 
 # tin tức
 def NewsView(request):
+    page = request.GET.get('page', '')
+    page = int(page) if page.isdigit() else 1
+    start = (page - 1) * PAGE_SIZE
+    end = start + PAGE_SIZE
     newsList = News.objects.all()
+    total = newsList.count()
+    num_page = math.ceil(total / PAGE_SIZE)
     context = {
-        'newList': newsList
+        'newList': newsList[start:end],
+        'start': start,
+        'end': end,
+        'num_page': num_page,
+        'page': page
     }
     return render(request, 'news.html', context)
 

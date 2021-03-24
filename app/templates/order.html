@@ -40,7 +40,7 @@
                 <tr>
                     <th>Số lượng</th>
                     <td>
-                        <div style="width: 10px;text-align: center;">
+                        <div style="width: 10px;text-align: center;" id="total_qty">
                             {{ form.qty }} {{ form.qty.errors }}
                         </div>
                     </td>
@@ -82,8 +82,5 @@
                 $('#total').html(total);
             });
         });
-        function Qty(){
-            alert('Quá số lượng có trong ShowRoom');
-        }
     </script>
 {% endblock %}

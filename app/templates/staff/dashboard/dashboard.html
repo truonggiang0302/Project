@@ -63,6 +63,9 @@
         #cellPaiChart {
             height: 160px;
         }
+        .orders.card.page{
+            text-align: center;
+        }
 
     </style>
     <div class="row">
@@ -71,7 +74,7 @@
                 <div class="card-body">
                     <div class="stat-widget-five">
                         <div class="stat-icon dib flat-color-1">
-                            <i class="fa fa-cart-plus"></i>
+                            <a  href="{% url 'list-order' %}"><i class="fa fa-cart-plus"></i></a>
                         </div>
                         <div class="stat-content">
                             <div class="text-left dib">
@@ -89,7 +92,7 @@
                 <div class="card-body">
                     <div class="stat-widget-five">
                         <div class="stat-icon dib flat-color-2">
-                            <i class="fas fa-motorcycle""></i>
+                            <a href="{% url 'list-category' %}"><i class="fas fa-motorcycle"></i></a>
                         </div>
                         <div class="stat-content">
                             <div class="text-left dib">
@@ -107,11 +110,12 @@
                 <div class="card-body">
                     <div class="stat-widget-five">
                         <div class="stat-icon dib flat-color-3">
-                            <i class="fa fa-paper-plane"></i>
+                            <a href="{% url 'list-product' %}"><i class="fa fa-paper-plane"></i></a>
                         </div>
                         <div class="stat-content">
                             <div class="text-left dib">
                                 <div class="stat-text"><span class="count">{{ product }}</span></div>
+                                
                                 <div class="stat-heading">Xe</div>
                             </div>
                         </div>
@@ -125,7 +129,7 @@
                 <div class="card-body">
                     <div class="stat-widget-five">
                         <div class="stat-icon dib flat-color-4">
-                            <i class="fa fa-users"></i>
+                            <a href="{% url 'list-contact' %}"><i class="fa fa-users"></i></a>
                         </div>
                         <div class="stat-content">
                             <div class="text-left dib">
@@ -141,20 +145,52 @@
     <!-- /Widgets -->
 
     <div class="clearfix"></div>
+    <!--Revenue-->
+    <div class="orders">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title" style="color: red">DOANH THU CỬA HÀNG </h4>
+                    </div>
+                    <div class="card-body--">
+                        <div class="table-stats order-table ov-h">
+                            <table class="table ">
+                                <thead>
+                                <tr style="color: black">
+                                    <th>SỐ LƯỢNG XE ĐÃ BÁN</th>
+                                    <th>TỔNG DOANH THU</th>
+                                    
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                           <td>{{ qty_sell }}</td> 
+                                           <td>{{ revenue }}</td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div> <!-- /.table-stats -->
+                    </div>
+                </div> <!-- /.card -->
+            </div>  <!-- /.col-lg-8 -->
 
+
+        </div>
+    </div>
     <!-- Orders -->
     <div class="orders">
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="box-title">ĐƠN HÀNG </h4>
+                        <h4 class="box-title" style="color: red">ĐƠN HÀNG </h4>
                     </div>
                     <div class="card-body--">
                         <div class="table-stats order-table ov-h">
                             <table class="table ">
                                 <thead>
-                                <tr>
+                                <tr style="color: black">
                                     <th class="serial">STT</th>
                                     <th>TÊN</th>
                                     <th>SDT</th>
@@ -170,7 +206,7 @@
                                 {% if orders %}
                                     {% for order in orders %}
                                         <tr>
-                                            <td class="serial">{{ forloop.counter }}</td>
+                                            <td class="serial">{{ forloop.counter|add:start }}</td>
                                             <td>{{ order.customer_name }}</td>
                                             <td>{{ order.customer_phone }}</td>
                                             <td>{{ order.product.name }}</td>
@@ -194,6 +230,22 @@
                                 </tbody>
                             </table>
                         </div> <!-- /.table-stats -->
+                    </div>
+                    <div class="page ">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href='/staff?page=1'>&laquo;</a></li>
+
+                            <li class="page-item"><a class="page-link"
+                                    {% if page > 1 %} href='/staff?page={{ page|add:-1 }}' {% endif %}>&lsaquo;</a>
+                            </li>
+
+                            <li class="page-item"><a class="page-link"
+                                    {% if page < num_page %}
+                                                     href='/staff?page={{ page|add:1 }}' {% endif %}>&rsaquo;</a></li>
+
+                            <li class="page-item"><a class="page-link" href='/staff?page={{ num_page }}'>&raquo;</a>
+                            </li>
+                        </ul>
                     </div>
                 </div> <!-- /.card -->
             </div>  <!-- /.col-lg-8 -->

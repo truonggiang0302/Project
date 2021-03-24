@@ -14,7 +14,7 @@ class Product(models.Model):
     type_vehicle=models.CharField(max_length=50,verbose_name='Loại xe')
     color=models.CharField(max_length=30,verbose_name='Màu sắc',default='')
     cc=models.FloatField(verbose_name='Phân khối')
-    price = models.DecimalField(max_digits=10,decimal_places=1,verbose_name='Giá')
+    price = models.DecimalField(max_digits=10,decimal_places=2,verbose_name='Giá')
     category = models.ForeignKey(Category, verbose_name='Nhóm', on_delete=models.PROTECT)
     image = models.ImageField(verbose_name='Ảnh', upload_to='static/images')
     year=models.CharField(max_length=10,verbose_name='Năm sản xuất')
@@ -22,6 +22,8 @@ class Product(models.Model):
     qty=models.IntegerField(verbose_name='Số lượng',default=1)
     def __str__(self):
         return self.name
+
+
     
 class Order(models.Model):
     class Status:
